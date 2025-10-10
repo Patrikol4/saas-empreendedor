@@ -1,6 +1,6 @@
-# React + TypeScript + Vite
+# Souza Tech - Dashboard Helper Privado
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Feito em React, Vite e HMR, altamente compatível e atualizável. Ele tem integração a uma IA e também consome API's de diversas fontes.
 
 Currently, two official plugins are available:
 
@@ -71,3 +71,9 @@ export default defineConfig([
   },
 ])
 ```
+
+Foi pensado como um projeto que ajude os empreendedores / investidores solo a desenvolverem seus projetos / boilerplates / portfolios / prototipos de maneira mais rápida e eficiente. 
+
+Além e ajudar com pesquisas de mercado e tratamento de dados recebidos de maneira local, a fim de estudar cidades onde não existem dados disponibilizados por governos ( seja estadual ou federal ) e estabelecer um repositório de dados fiéis e abarcados na verdade e em estudos de campo. 
+
+Ferramenta essencial para aquele que quer começar com pouco capital em quaisquer projetos / investimentos, voltada exclusivamente para esse tipo de pessoa.
