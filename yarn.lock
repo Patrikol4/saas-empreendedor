@@ -1955,10 +1955,10 @@ react-map-gl@^8.1.0:
     "@types/use-sync-external-store" "^0.0.6"
     use-sync-external-store "^1.4.0"
 
-react-router@^7.9.4:
-  version "7.9.4"
-  resolved "https://registry.yarnpkg.com/react-router/-/react-router-7.9.4.tgz#2c4249e5d0a6bb8b8f6bf0ede8f5077e4ff8024f"
-  integrity sha512-SD3G8HKviFHg9xj7dNODUKDFgpG4xqD5nhyd0mYoB5iISepuZAvzSr8ywxgxKJ52yRzf/HWtVHc9AWwoTbljvA==
+react-router@^7.10.1:
+  version "7.10.1"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-7.10.1.tgz#e973146ed5f10a80783fdb3f27dbe37679557a7c"
+  integrity sha512-gHL89dRa3kwlUYtRQ+m8NmxGI6CgqN+k4XyGjwcFoQwwCWF6xXpOCUlDovkXClS0d0XJN/5q7kc5W3kiFEd0Yw==
   dependencies:
     cookie "^1.0.1"
     set-cookie-parser "^2.6.0"

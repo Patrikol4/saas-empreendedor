@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } from 'recharts';
 import { Send, Settings, Cpu, Clock, Lock , ChartArea,  Users, FileText, Database, CheckCircle, DollarSign, TrendingUp, LayoutDashboard, UserCircle, LogOut, Menu, X, ChevronDown, Search, Plus, Edit, Trash2, Eye, Filter, Download, Upload, Mail, Phone, MapPin, Calendar, Save, User, Building2, ShoppingBag, CreditCard, PieChart } from 'lucide-react';
+//import type { Icon, Title, Value, Color } from './interfaces/Pages';
 
 const App = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -89,16 +90,17 @@ const App = () => {
   ];
 
   const getStatusColor = (status: any) => {
+    interface colors { type: Array<String> }
     const colors = {
       'Ativo': 'bg-green-100 text-green-800',
       'Inativo': 'bg-red-100 text-red-800',
       'Prospectado': 'bg-blue-100 text-blue-800',
       'Enviada': 'bg-yellow-100 text-yellow-800',
-      'Em Análise': 'bg-purple-100 text-purple-800',
+      'Em Analise': 'bg-purple-100 text-purple-800',
       'Aprovada': 'bg-green-100 text-green-800',
       'Rejeitada': 'bg-red-100 text-red-800',
       'Fechado': 'bg-green-100 text-green-800',
-      'Em Negociação': 'bg-orange-100 text-orange-800',
+      'Em Negociacao': 'bg-orange-100 text-orange-800',
     };
     return colors[status] || 'bg-gray-100 text-gray-800';
   };
@@ -181,7 +183,7 @@ const App = () => {
             <YAxis dataKey="name" type="category" />
             <Tooltip />
             <Bar dataKey="value" fill="#3b82f6">
-              {funnelData.map((entry, index) => (
+              {funnelData.map((_entry, index) => (
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
               ))}
             </Bar>
@@ -1241,7 +1243,7 @@ const UsuariosPage = () => {
   ]);
 
   const abrirModal = (usuario: React.SetStateAction<null> | { id: number; nome: string; email: string; telefone: string; tipo: string; empresaVinculada: null; plano: string; status: string; dataCadastro: string; mensalidade: string; whatsapp?: undefined; dadosDetalhados?: undefined; } | { id: number; nome: string; email: string; telefone: string; whatsapp: string; tipo: string; empresaVinculada: string; plano: string; status: string; dataCadastro: string; mensalidade: string; dadosDetalhados: { endereco: string; preferenciasGasto: { categoria: string; cnae: string; percentual: number; }[]; totalGasto: number; periodoMaisGasto: { meses: string[]; dias: string[]; }; formasPagamento: { tipo: string; percentual: number; vezes: number; }[]; horariosPico: string[]; historicoCompras: { data: string; valor: number; items: string; }[]; }; } | { id: number; nome: string; email: string; telefone: string; tipo: string; empresaVinculada: string; plano: string; status: string; dataCadastro: string; mensalidade: string; dadosDetalhados: { endereco: string; preferenciasGasto: { categoria: string; cnae: string; percentual: number; }[]; totalGasto: number; periodoMaisGasto: { meses: string[]; dias: string[]; }; formasPagamento: { tipo: string; percentual: number; vezes: number; }[]; horariosPico: string[]; historicoCompras: { data: string; valor: number; items: string; }[]; }; whatsapp?: undefined; }) => {
-    if (usuario.tipo === "Cliente de Terceiro" && usuario.dadosDetalhados) {
+    if (usuario?.tipo === "Cliente de Terceiro" && usuario?.dadosDetalhados) {
       setClienteSelecionado(usuario);
       setModalAberto(true);
     }
@@ -1438,8 +1440,8 @@ const UsuariosPage = () => {
             <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white p-6 rounded-t-lg sticky top-0 z-10">
               <div className="flex justify-between items-start">
                 <div>
-                  <h2 className="text-2xl font-bold mb-2">{clienteSelecionado.nome}</h2>
-                  <p className="text-purple-100 text-sm">Cliente de Terceiro - {clienteSelecionado.empresaVinculada}</p>
+                  <h2 className="text-2xl font-bold mb-2">{clienteSelecionado?.nome}</h2>
+                  <p className="text-purple-100 text-sm">Cliente de Terceiro - {clienteSelecionado?.empresaVinculada}</p>
                 </div>
                 <button 
                   onClick={fecharModal}

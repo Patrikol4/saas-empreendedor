@@ -8,10 +8,24 @@ datasource db {
 }
 
 enum PropostaStatus {
-   ENVIADA
-   EMANALISE
-   APROVADA
-   REJEITADA
+    ENVIADA
+    EMANALISE
+    APROVADA
+    REJEITADA
+}
+
+enum AplicacaoStatus {
+    ONLINE
+    DESENVOLVIMENTO
+    PLANEJAMENTO
+}
+
+enum journalType {
+    REFLEXAO
+    APRENDIZADO
+    GRATIDAO
+    META
+    PESSOAL
 }
 
 model User {
@@ -33,6 +47,7 @@ model Journal {
     id        String   @id @default(auto()) @map("_id") @db.ObjectId
     title     String
     content   String?
+    tag       journalType?
     author    User     @relation(fields: [authorId], references: [id])
     authorId  String   @db.ObjectId
     createdAt DateTime @default(now())
@@ -40,13 +55,13 @@ model Journal {
 }
 
 model Propostas {
-    id        String   @id @default(auto()) @map("_id") @db.ObjectId
+    id        String          @id @default(auto()) @map("_id") @db.ObjectId
     cliente   String
     conteudo  String
     valor     Int
-    createdAt DateTime @default(now())
-    enviadoEm DateTime @updatedAt
-    validoAte DateTime @updatedAt
+    createdAt DateTime        @default(now())
+    enviadoEm DateTime        @updatedAt
+    validoAte DateTime        @updatedAt
     status    PropostaStatus?
 }
 
@@ -55,5 +70,14 @@ model Negocios {
 }
 
 model Aplicacoes {
-    id String @id @default(auto()) @map("_id") @db.ObjectId
+    id            String           @id @default(auto()) @map("_id") @db.ObjectId
+    image         String // link da imagem de fundo do app
+    online        Boolean // true ou false
+    linkAcesso    String
+    linkRepo      String // link de acesso ao github do projeto
+    criadoEm      DateTime         @default(now())
+    custoMensal   Int // colocar os custos totais envolvidos para manter o projeto rodando
+    retornoMensal Int // Colocar os retornos mensais deste projeto 
+    status        AplicacaoStatus? // vai retornar o endpoint "health" e
+    // se o endpoint code retornar 200 ou um código de sucesso, ele retorna o status Online no campo Status
 }
