@@ -8,11 +8,11 @@ const App = () => {
   
   // Dados de exemplo - em produção, viriam de uma API
   const [metricsData] = useState({
-    clientesProspectados: 145,
-    propostasEnviadas: 89,
-    clientesSalvos: 234,
-    negociosFechados: 67,
-    receitaTotal: 458750.00
+    clientesProspectados: 0,
+    propostasEnviadas: 0,
+    clientesSalvos: 0,
+    negociosFechados: 0,
+    receitaTotal: 0,
   });
 
   const [monthlyData] = useState([
@@ -80,6 +80,7 @@ const App = () => {
     { icon: Users, label: 'Usuários', page: 'usuarios'},
     { icon: FileText, label: 'Propostas', page: 'propostas' },
     { icon: CheckCircle, label: 'Negócios', page: 'negocios' },
+    { icon: CheckCircle, label: 'Aplicações', page: 'aplicacoes' },
     { icon: ChartArea, label: 'Cotações Cripto', page: 'quotations'},
     { icon: FileText, label: 'Journal', page: 'journal'},
     { icon: Database, label: 'Banco de Dados', page: 'database' },
@@ -87,7 +88,7 @@ const App = () => {
     { icon: Database, label: 'IA' , page: 'ialocalpage'},
   ];
 
-  const getStatusColor = (status) => {
+  const getStatusColor = (status: any) => {
     const colors = {
       'Ativo': 'bg-green-100 text-green-800',
       'Inativo': 'bg-red-100 text-red-800',
@@ -611,7 +612,7 @@ const IALocalPage = () => {
                   type="text"
                   value={inputMessage}
                   onChange={(e) => setInputMessage(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleEnviar()}
+                  onKeyUp={(e) => e.key === 'Enter' && handleEnviar()} // função depreciada atualizada
                   placeholder="Digite sua mensagem..."
                   style={{ flex: 1, padding: '12px 16px', border: '1px solid #d1d5db', borderRadius: '8px', fontSize: '14px' }}
                 />
@@ -801,7 +802,7 @@ const IALocalPage = () => {
       ? entradas 
       : entradas.filter(e => e.tipo === filtroTipo);
 
-    const getTipoColor = (tipo) => {
+    const getTipoColor = (tipo: any) => {
       const cores = {
         'Reflexão': 'bg-blue-100 text-blue-800 border-blue-300',
         'Aprendizado': 'bg-purple-100 text-purple-800 border-purple-300',
@@ -1239,7 +1240,7 @@ const UsuariosPage = () => {
     }
   ]);
 
-  const abrirModal = (usuario) => {
+  const abrirModal = (usuario: React.SetStateAction<null> | { id: number; nome: string; email: string; telefone: string; tipo: string; empresaVinculada: null; plano: string; status: string; dataCadastro: string; mensalidade: string; whatsapp?: undefined; dadosDetalhados?: undefined; } | { id: number; nome: string; email: string; telefone: string; whatsapp: string; tipo: string; empresaVinculada: string; plano: string; status: string; dataCadastro: string; mensalidade: string; dadosDetalhados: { endereco: string; preferenciasGasto: { categoria: string; cnae: string; percentual: number; }[]; totalGasto: number; periodoMaisGasto: { meses: string[]; dias: string[]; }; formasPagamento: { tipo: string; percentual: number; vezes: number; }[]; horariosPico: string[]; historicoCompras: { data: string; valor: number; items: string; }[]; }; } | { id: number; nome: string; email: string; telefone: string; tipo: string; empresaVinculada: string; plano: string; status: string; dataCadastro: string; mensalidade: string; dadosDetalhados: { endereco: string; preferenciasGasto: { categoria: string; cnae: string; percentual: number; }[]; totalGasto: number; periodoMaisGasto: { meses: string[]; dias: string[]; }; formasPagamento: { tipo: string; percentual: number; vezes: number; }[]; horariosPico: string[]; historicoCompras: { data: string; valor: number; items: string; }[]; }; whatsapp?: undefined; }) => {
     if (usuario.tipo === "Cliente de Terceiro" && usuario.dadosDetalhados) {
       setClienteSelecionado(usuario);
       setModalAberto(true);
@@ -1251,7 +1252,7 @@ const UsuariosPage = () => {
     setClienteSelecionado(null);
   };
 
-  const getStatusColor = (status) => {
+  const getStatusColor = (status: any) => {
     switch (status) {
       case 'Ativo':
         return 'bg-green-100 text-green-800';
@@ -1264,13 +1265,13 @@ const UsuariosPage = () => {
     }
   };
 
-  const getTipoColor = (tipo) => {
+  const getTipoColor = (tipo: any) => {
     return tipo === 'Cliente da Plataforma' 
       ? 'bg-blue-100 text-blue-800 border border-blue-200' 
       : 'bg-purple-100 text-purple-800 border border-purple-200';
   };
 
-  const getTipoIcon = (tipo) => {
+  const getTipoIcon = (tipo: any) => {
     return tipo === 'Cliente da Plataforma' ? User : Building2;
   };
 
@@ -1508,7 +1509,7 @@ const UsuariosPage = () => {
                   Preferências de Gasto
                 </h3>
                 <div className="space-y-3">
-                  {clienteSelecionado.dadosDetalhados.preferenciasGasto.map((pref, index) => (
+                  {clienteSelecionado.dadosDetalhados.preferenciasGasto.map((pref: { categoria: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; cnae: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; percentual: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; }, index: React.Key | null | undefined) => (
                     <div key={index} className="bg-white rounded-lg p-4">
                       <div className="flex justify-between items-center mb-2">
                         <div>
@@ -1535,7 +1536,7 @@ const UsuariosPage = () => {
                   Formas de Pagamento Mais Usadas
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {clienteSelecionado.dadosDetalhados.formasPagamento.map((forma, index) => (
+                  {clienteSelecionado.dadosDetalhados.formasPagamento.map((forma: { tipo: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; percentual: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; vezes: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; }, index: React.Key | null | undefined) => (
                     <div key={index} className="bg-white rounded-lg p-4 border-2 border-gray-200">
                       <div className="flex items-center justify-between mb-2">
                         <p className="font-semibold text-gray-800">{forma.tipo}</p>
@@ -1561,7 +1562,7 @@ const UsuariosPage = () => {
                     Meses de Maior Gasto
                   </h3>
                   <div className="space-y-2">
-                    {clienteSelecionado.dadosDetalhados.periodoMaisGasto.meses.map((mes, index) => (
+                    {clienteSelecionado.dadosDetalhados.periodoMaisGasto.meses.map((mes: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, index: React.Key | null | undefined) => (
                       <div key={index} className="bg-white px-4 py-3 rounded-lg border-l-4 border-purple-600">
                         <p className="font-medium text-gray-800">{mes}</p>
                       </div>
@@ -1575,7 +1576,7 @@ const UsuariosPage = () => {
                     Dias da Semana
                   </h3>
                   <div className="space-y-2">
-                    {clienteSelecionado.dadosDetalhados.periodoMaisGasto.dias.map((dia, index) => (
+                    {clienteSelecionado.dadosDetalhados.periodoMaisGasto.dias.map((dia: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, index: React.Key | null | undefined) => (
                       <div key={index} className="bg-white px-4 py-3 rounded-lg border-l-4 border-purple-600">
                         <p className="font-medium text-gray-800">{dia}</p>
                       </div>
@@ -1591,7 +1592,7 @@ const UsuariosPage = () => {
                   Horários de Maior Atividade
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {clienteSelecionado.dadosDetalhados.horariosPico.map((horario, index) => (
+                  {clienteSelecionado.dadosDetalhados.horariosPico.map((horario: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, index: React.Key | null | undefined) => (
                     <div key={index} className="bg-white px-4 py-3 rounded-lg flex items-center gap-3">
                       <Clock className="w-5 h-5 text-purple-600" />
                       <p className="font-medium text-gray-800">{horario}</p>
@@ -1607,7 +1608,7 @@ const UsuariosPage = () => {
                   Últimas Compras
                 </h3>
                 <div className="space-y-3">
-                  {clienteSelecionado.dadosDetalhados.historicoCompras.map((compra, index) => (
+                  {clienteSelecionado.dadosDetalhados.historicoCompras.map((compra: { data: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; items: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; valor: { toLocaleString: (arg0: string, arg1: { minimumFractionDigits: number; }) => string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; }; }, index: React.Key | null | undefined) => (
                     <div key={index} className="bg-white rounded-lg p-4 border-l-4 border-purple-600 hover:shadow-md transition-shadow">
                       <div className="flex justify-between items-start">
                         <div className="flex-1">
@@ -1795,6 +1796,96 @@ const UsuariosPage = () => {
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data Fechamento</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vendedor</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {negocios.map((negocio) => (
+                <tr key={negocio.id} className="hover:bg-gray-50">
+                  <td className="px-6 py-4 whitespace-nowrap text-gray-900">#{negocio.id}</td>
+                  <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">{negocio.cliente}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-gray-600">R$ {negocio.valor.toLocaleString('pt-BR')}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(negocio.status)}`}>
+                      {negocio.status}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-gray-600">{negocio.dataFechamento}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-gray-600">{negocio.vendedor}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="flex gap-2">
+                      <button className="text-blue-600 hover:text-blue-800"><Eye className="w-5 h-5" /></button>
+                      <button className="text-green-600 hover:text-green-800"><Edit className="w-5 h-5" /></button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </>
+  );
+
+// Página de Aplicações ( as aplicações que tenho prontas e que posso colocar para me fazer faturar algo )
+  const AplicacoesPage = () => (
+    <>
+      <div className="mb-8 flex justify-between items-center">
+        <div>
+          <h1 className="text-4xl font-bold text-gray-800 mb-2">Aplicações</h1>
+          <p className="text-gray-600">Acompanhe o desempenho de suas aplicações, se estão online, em desenvolvimento ou até mesmo na fase de planejamento.</p>
+        </div>
+        <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center gap-2 transition-colors">
+          <Plus className="w-5 h-5" />
+          Nova Aplicação
+        </button>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+        <div className="bg-white rounded-lg shadow-md p-6">
+          <p className="text-gray-500 text-sm mb-1">Total Listadas</p>
+          <p className="text-3xl font-bold text-green-600">1</p>
+        </div>
+        <div className="bg-white rounded-lg shadow-md p-6">
+          <p className="text-gray-500 text-sm mb-1">Online</p>
+          <p className="text-3xl font-bold text-orange-600">0</p>
+        </div>
+        <div className="bg-white rounded-lg shadow-md p-6">
+          <p className="text-gray-500 text-sm mb-1">Em desenvolvimento</p>
+          <p className="text-3xl font-bold text-blue-600">0</p>
+        </div>
+         <div className="bg-white rounded-lg shadow-md p-6">
+          <p className="text-gray-500 text-sm mb-1">Em planejamento</p>
+          <p className="text-3xl font-bold text-red-600">0</p>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="flex gap-4 mb-4">
+          <div className="flex-1 relative">
+            <Search className="w-5 h-5 absolute left-3 top-3 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Buscar apps..."
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+            <Filter className="w-5 h-5" />
+            Filtrar
+          </button>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">APLICAÇÃO</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Custo</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data Cadastrada</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cliente</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
               </tr>
             </thead>
@@ -2145,6 +2236,8 @@ const UsuariosPage = () => {
         return <PropostasPage />;
       case 'negocios':
         return <NegociosPage />;
+      case 'aplicacoes': 
+        return <AplicacoesPage />;
       case 'quotations':
         return <QuotationsPage />;
       case 'journal':
