@@ -1,30 +1,59 @@
 generator client {
-provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
-
 
 datasource db {
-provider = "mongodb"
-url = env("DATABASE_URL")
+    provider = "mongodb"
+    url      = env("DATABASE_URL")
 }
 
+enum PropostaStatus {
+   ENVIADA
+   EMANALISE
+   APROVADA
+   REJEITADA
+}
 
 model User {
-id String @id @map("_id") @default(auto())
-email String @unique
-password String
-name String?
-journals Journal[]
-createdAt DateTime @default(now())
+    id        String    @id @default(auto()) @map("_id") @db.ObjectId
+    email     String    @unique
+    password  String
+    name      String?
+    journals  Journal[]
+    createdAt DateTime  @default(now())
+    userId    String?   @db.ObjectId
 }
 
+model UserRole {
+    id     String  @id @default(auto()) @map("_id") @db.ObjectId
+    userId String? @db.ObjectId
+}
 
 model Journal {
-id String @id @map("_id") @default(auto())
-title String
-content String?
-author User @relation(fields: [authorId], references: [id])
-authorId String
-createdAt DateTime @default(now())
-updatedAt DateTime @updatedAt
+    id        String   @id @default(auto()) @map("_id") @db.ObjectId
+    title     String
+    content   String?
+    author    User     @relation(fields: [authorId], references: [id])
+    authorId  String   @db.ObjectId
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Propostas {
+    id        String   @id @default(auto()) @map("_id") @db.ObjectId
+    cliente   String
+    conteudo  String
+    valor     Int
+    createdAt DateTime @default(now())
+    enviadoEm DateTime @updatedAt
+    validoAte DateTime @updatedAt
+    status    PropostaStatus?
+}
+
+model Negocios {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+}
+
+model Aplicacoes {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
 }
