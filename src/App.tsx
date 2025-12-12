@@ -90,8 +90,8 @@ const App = () => {
   ];
 
   const getStatusColor = (status: any) => {
-    interface colors { type: Array<String> }
-    const colors = {
+    
+    const colors = Object.keys({
       'Ativo': 'bg-green-100 text-green-800',
       'Inativo': 'bg-red-100 text-red-800',
       'Prospectado': 'bg-blue-100 text-blue-800',
@@ -101,7 +101,7 @@ const App = () => {
       'Rejeitada': 'bg-red-100 text-red-800',
       'Fechado': 'bg-green-100 text-green-800',
       'Em Negociacao': 'bg-orange-100 text-orange-800',
-    };
+    });
     return colors[status] || 'bg-gray-100 text-gray-800';
   };
 
