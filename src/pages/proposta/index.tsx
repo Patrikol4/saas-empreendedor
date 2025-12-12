@@ -1,0 +1,119 @@
+import { Edit, Eye, Filter, Plus, Search, Trash2 } from "lucide-react"
+import { useState } from "react";
+
+const [propostas] = useState([
+    { id: 1, cliente: 'Tech Solutions Ltda', valor: 45000, status: 'Enviada', data: '2024-10-01', validade: '2024-10-31' },
+    { id: 2, cliente: 'Inovação Digital', valor: 32000, status: 'Em Análise', data: '2024-10-03', validade: '2024-11-03' },
+    { id: 3, cliente: 'Empresa ABC', valor: 78000, status: 'Aprovada', data: '2024-09-28', validade: '2024-10-28' },
+    { id: 4, cliente: 'StartUp XYZ', valor: 15000, status: 'Rejeitada', data: '2024-09-15', validade: '2024-10-15' },
+]);
+
+  const getStatusColor = (status: any) => {
+    
+    const colors = Object.keys({
+      'Ativo': 'bg-green-100 text-green-800',
+      'Inativo': 'bg-red-100 text-red-800',
+      'Prospectado': 'bg-blue-100 text-blue-800',
+      'Enviada': 'bg-yellow-100 text-yellow-800',
+      'Em Analise': 'bg-purple-100 text-purple-800',
+      'Aprovada': 'bg-green-100 text-green-800',
+      'Rejeitada': 'bg-red-100 text-red-800',
+      'Fechado': 'bg-green-100 text-green-800',
+      'Em Negociacao': 'bg-orange-100 text-orange-800',
+    });
+    return colors[status] || 'bg-gray-100 text-gray-800';
+  };
+
+
+export const PropostasPage = () => (
+
+    <>
+
+
+        <div className="mb-8 flex justify-between items-center">
+            <div>
+                <h1 className="text-4xl font-bold text-gray-800 mb-2">Propostas</h1>
+                <p className="text-gray-600">Gerencie suas propostas comerciais</p>
+            </div>
+            <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center gap-2 transition-colors">
+                <Plus className="w-5 h-5" />
+                Nova Proposta
+            </button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+            <div className="bg-white rounded-lg shadow-md p-6">
+                <p className="text-gray-500 text-sm mb-1">Total Enviadas</p>
+                <p className="text-3xl font-bold text-blue-600">89</p>
+            </div>
+            <div className="bg-white rounded-lg shadow-md p-6">
+                <p className="text-gray-500 text-sm mb-1">Em Análise</p>
+                <p className="text-3xl font-bold text-purple-600">34</p>
+            </div>
+            <div className="bg-white rounded-lg shadow-md p-6">
+                <p className="text-gray-500 text-sm mb-1">Aprovadas</p>
+                <p className="text-3xl font-bold text-green-600">42</p>
+            </div>
+            <div className="bg-white rounded-lg shadow-md p-6">
+                <p className="text-gray-500 text-sm mb-1">Rejeitadas</p>
+                <p className="text-3xl font-bold text-red-600">13</p>
+            </div>
+        </div>
+
+        <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="flex gap-4 mb-4">
+                <div className="flex-1 relative">
+                    <Search className="w-5 h-5 absolute left-3 top-3 text-gray-400" />
+                    <input
+                        type="text"
+                        placeholder="Buscar propostas..."
+                        className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                </div>
+                <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+                    <Filter className="w-5 h-5" />
+                    Filtrar
+                </button>
+            </div>
+
+            <div className="overflow-x-auto">
+                <table className="w-full">
+                    <thead className="bg-gray-50">
+                        <tr>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cliente</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Valor</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data Envio</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Validade</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                        {propostas.map((proposta) => (
+                            <tr key={proposta.id} className="hover:bg-gray-50">
+                                <td className="px-6 py-4 whitespace-nowrap text-gray-900">#{proposta.id}</td>
+                                <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">{proposta.cliente}</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-gray-600">R$ {proposta.valor.toLocaleString('pt-BR')}</td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(proposta.status)}`}>
+                                        {proposta.status}
+                                    </span>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-gray-600">{proposta.data}</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-gray-600">{proposta.validade}</td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                    <div className="flex gap-2">
+                                        <button className="text-blue-600 hover:text-blue-800"><Eye className="w-5 h-5" /></button>
+                                        <button className="text-green-600 hover:text-green-800"><Edit className="w-5 h-5" /></button>
+                                        <button className="text-red-600 hover:text-red-800"><Trash2 className="w-5 h-5" /></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </>
+);
