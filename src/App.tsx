@@ -22,7 +22,13 @@ const App = () => {
     { mes: 'Mar', prospectados: 38, propostas: 22, fechados: 14, receita: 68000 },
     { mes: 'Abr', prospectados: 52, propostas: 31, fechados: 19, receita: 89500 },
     { mes: 'Mai', prospectados: 48, propostas: 28, fechados: 21, receita: 95250 },
-    { mes: 'Jun', prospectados: 30, propostas: 15, fechados: 8, receita: 68500 }
+    { mes: 'Jun', prospectados: 30, propostas: 15, fechados: 8, receita: 68500 },
+    { mes: 'Jul', prospectados: 20, propostas: 15, fechados: 8, receita: 32000 },
+    { mes: 'Ago', prospectados: 38, propostas: 22, fechados: 14, receita: 68000 },
+    { mes: 'Set', prospectados: 52, propostas: 31, fechados: 19, receita: 89500 },
+    { mes: 'Out', prospectados: 48, propostas: 28, fechados: 21, receita: 95250 },
+    { mes: 'Nov', prospectados: 30, propostas: 15, fechados: 8, receita: 68500 },
+    { mes: 'Dez', prospectados: 20, propostas: 15, fechados: 8, receita: 32000 },
   ]);
 
   const [clientes] = useState([
@@ -54,7 +60,7 @@ const App = () => {
 
   const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'];
 
-  const MetricCard = ({ icon: Icon, title, value, color, prefix = '' }) => (
+  const MetricCard = ({ icon: Icon, title, value, color, prefix = '' }: { icon: any, title: string, value: any, color: any, prefix: any}) => (
     <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
       <div className="flex items-center justify-between">
         <div>
@@ -114,10 +120,10 @@ const App = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
-        <MetricCard icon={Users} title="Clientes Prospectados" value={metricsData.clientesProspectados} color="text-blue-600" />
-        <MetricCard icon={FileText} title="Propostas Enviadas" value={metricsData.propostasEnviadas} color="text-green-600" />
-        <MetricCard icon={Database} title="Clientes no BD" value={metricsData.clientesSalvos} color="text-purple-600" />
-        <MetricCard icon={CheckCircle} title="Negócios Fechados" value={metricsData.negociosFechados} color="text-orange-600" />
+        <MetricCard icon={Users} title="Clientes Prospectados" value={metricsData.clientesProspectados} color="text-blue-600" prefix=''/>
+        <MetricCard icon={FileText} title="Propostas Enviadas" value={metricsData.propostasEnviadas} color="text-green-600" prefix=''/>
+        <MetricCard icon={Database} title="Clientes no BD" value={metricsData.clientesSalvos} color="text-purple-600" prefix='' />
+        <MetricCard icon={CheckCircle} title="Negócios Fechados" value={metricsData.negociosFechados} color="text-orange-600" prefix=''/>
         <MetricCard icon={DollarSign} title="Receita Total" value={metricsData.receitaTotal} color="text-emerald-600" prefix="R$ " />
       </div>
 
@@ -805,13 +811,13 @@ const App = () => {
       : entradas.filter(e => e.tipo === filtroTipo);
 
     const getTipoColor = (tipo: any) => {
-      const cores = {
+      const cores = Object.keys({
         'Reflexão': 'bg-blue-100 text-blue-800 border-blue-300',
         'Aprendizado': 'bg-purple-100 text-purple-800 border-purple-300',
         'Gratidão': 'bg-green-100 text-green-800 border-green-300',
         'Meta': 'bg-orange-100 text-orange-800 border-orange-300',
         'Pessoal': 'bg-pink-100 text-pink-800 border-pink-300'
-      };
+      });
       return cores[tipo] || 'bg-gray-100 text-gray-800 border-gray-300';
     };
 
@@ -868,8 +874,8 @@ const App = () => {
                   key={tipo}
                   onClick={() => setFiltroTipo(tipo)}
                   className={`px-4 py-2 rounded-lg font-medium transition-all ${filtroTipo === tipo
-                      ? 'bg-blue-600 text-white shadow-md'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-blue-600 text-white shadow-md'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
                 >
                   {tipo}
@@ -1439,8 +1445,8 @@ const App = () => {
               <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white p-6 rounded-t-lg sticky top-0 z-10">
                 <div className="flex justify-between items-start">
                   <div>
-                    <h2 className="text-2xl font-bold mb-2">{clienteSelecionado?.nome}</h2>
-                    <p className="text-purple-100 text-sm">Cliente de Terceiro - {clienteSelecionado?.empresaVinculada}</p>
+                    <h2 className="text-2xl font-bold mb-2">{clienteSelecionado['nome']}</h2>
+                    <p className="text-purple-100 text-sm">Cliente de Terceiro - {clienteSelecionado['empresaVinculada']}</p>
                   </div>
                   <button
                     onClick={fecharModal}
@@ -2278,8 +2284,8 @@ const App = () => {
                 <button
                   onClick={() => setCurrentPage(item.page)}
                   className={`w-full flex items-center gap-3 p-3 rounded-lg transition-colors ${currentPage === item.page
-                      ? 'bg-blue-700 text-white'
-                      : 'hover:bg-blue-700/50 text-blue-100'
+                    ? 'bg-blue-700 text-white'
+                    : 'hover:bg-blue-700/50 text-blue-100'
                     }`}
                 >
                   <item.icon className="w-5 h-5 flex-shrink-0" />
