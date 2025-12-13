@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } from 'recharts';
-import { Send, Settings, Cpu, Clock, Lock , ChartArea,  Users, FileText, Database, CheckCircle, DollarSign, TrendingUp, LayoutDashboard, UserCircle, LogOut, Menu, X, ChevronDown, Search, Plus, Edit, Trash2, Eye, Filter, Download, Upload, Mail, Phone, MapPin, Calendar, Save, User, Building2, ShoppingBag, CreditCard, PieChart } from 'lucide-react';
+import { Send, Settings, Cpu, Clock, Lock, ChartArea, Users, FileText, Database, CheckCircle, DollarSign, TrendingUp, LayoutDashboard, UserCircle, LogOut, Menu, X, ChevronDown, Search, Plus, Edit, Trash2, Eye, Filter, Download, Upload, Mail, Phone, MapPin, Calendar, Save, User, Building2, ShoppingBag, CreditCard, PieChart } from 'lucide-react';
 //import type { Icon, Title, Value, Color } from './interfaces/Pages';
 
 const App = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [currentPage, setCurrentPage] = useState('dashboard');
-  
+
   // Dados de exemplo - em produção, viriam de uma API
   const [metricsData] = useState({
     clientesProspectados: 0,
@@ -46,7 +46,7 @@ const App = () => {
     { id: 4, cliente: 'Mega Corp', valor: 125000, status: 'Fechado', dataFechamento: '2024-09-20', vendedor: 'Ana Lima' },
   ]);
 
-   const funnelData = [
+  const funnelData = [
     { name: 'Prospectados', value: metricsData.clientesProspectados },
     { name: 'Propostas', value: metricsData.propostasEnviadas },
     { name: 'Fechados', value: metricsData.negociosFechados }
@@ -60,7 +60,7 @@ const App = () => {
         <div>
           <p className="text-gray-500 text-sm font-medium mb-1">{title}</p>
           <p className={`text-3xl font-bold ${color}`}>
-            {prefix}{typeof value === 'number' && prefix === 'R$ ' 
+            {prefix}{typeof value === 'number' && prefix === 'R$ '
               ? value.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
               : value}
           </p>
@@ -78,19 +78,19 @@ const App = () => {
   const menuItems = [
     { icon: LayoutDashboard, label: 'Dashboard', page: 'dashboard' },
     { icon: Users, label: 'Clientes', page: 'clientes' },
-    { icon: Users, label: 'Usuários', page: 'usuarios'},
+    { icon: Users, label: 'Usuários', page: 'usuarios' },
     { icon: FileText, label: 'Propostas', page: 'propostas' },
     { icon: CheckCircle, label: 'Negócios', page: 'negocios' },
     { icon: CheckCircle, label: 'Aplicações', page: 'aplicacoes' },
-    { icon: ChartArea, label: 'Cotações Cripto', page: 'quotations'},
-    { icon: FileText, label: 'Journal', page: 'journal'},
+    { icon: ChartArea, label: 'Cotações Cripto', page: 'quotations' },
+    { icon: FileText, label: 'Journal', page: 'journal' },
     { icon: Database, label: 'Banco de Dados', page: 'database' },
     { icon: Settings, label: 'Configurações', page: 'configuracoes' },
-    { icon: Database, label: 'IA' , page: 'ialocalpage'},
+    { icon: Database, label: 'IA', page: 'ialocalpage' },
   ];
 
   const getStatusColor = (status: any) => {
-    
+
     const colors = Object.keys({
       'Ativo': 'bg-green-100 text-green-800',
       'Inativo': 'bg-red-100 text-red-800',
@@ -193,41 +193,41 @@ const App = () => {
     </>
   );
 
-// Página de Cotações Cripto
+  // Página de Cotações Cripto
   const QuotationsPage = () => {
     const [cryptoData] = useState([
-      { 
-        id: 'BTC', 
-        name: 'Bitcoin', 
-        price: 328450.75, 
-        change24h: 2.45, 
+      {
+        id: 'BTC',
+        name: 'Bitcoin',
+        price: 328450.75,
+        change24h: 2.45,
         marketCap: '6.4T',
         volume24h: '89.5B',
         icon: '₿'
       },
-      { 
-        id: 'ETH', 
-        name: 'Ethereum', 
-        price: 13250.30, 
-        change24h: -1.20, 
+      {
+        id: 'ETH',
+        name: 'Ethereum',
+        price: 13250.30,
+        change24h: -1.20,
         marketCap: '1.6T',
         volume24h: '45.2B',
         icon: 'Ξ'
       },
-      { 
-        id: 'BNB', 
-        name: 'Binance Coin', 
-        price: 1850.90, 
-        change24h: 3.75, 
+      {
+        id: 'BNB',
+        name: 'Binance Coin',
+        price: 1850.90,
+        change24h: 3.75,
         marketCap: '285B',
         volume24h: '12.8B',
         icon: 'B'
       },
-      { 
-        id: 'SOL', 
-        name: 'Solana', 
-        price: 789.45, 
-        change24h: 5.20, 
+      {
+        id: 'SOL',
+        name: 'Solana',
+        price: 789.45,
+        change24h: 5.20,
         marketCap: '342B',
         volume24h: '8.9B',
         icon: 'S'
@@ -479,260 +479,260 @@ const App = () => {
   };
 
   //};
-//
+  //
 
-const IALocalPage = () => {
-  const [mensagens, setMensagens] = useState([
-    {
-      id: 1,
-      tipo: 'usuario',
-      conteudo: 'Olá! Como você pode me ajudar hoje?',
-      hora: '14:30'
-    },
-    {
-      id: 2,
-      tipo: 'ia',
-      conteudo: 'Olá! Sou seu assistente de IA rodando localmente. Posso ajudá-lo com:\n\n• Responder perguntas gerais\n• Auxiliar na redação de textos\n• Análise de dados\n• Programação e código\n• Brainstorming de ideias',
-      hora: '14:30'
-    }
-  ]);
-
-  const [inputMessage, setInputMessage] = useState('');
-  const [modeloAtivo, setModeloAtivo] = useState('Llama 3.2');
-  const [temperatura, setTemperatura] = useState(70);
-
-  const handleEnviar = () => {
-    if (inputMessage.trim()) {
-      setMensagens([...mensagens, {
-        id: Date.now(),
+  const IALocalPage = () => {
+    const [mensagens, setMensagens] = useState([
+      {
+        id: 1,
         tipo: 'usuario',
-        conteudo: inputMessage,
-        hora: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
-      }]);
-      setInputMessage('');
-    }
-  };
+        conteudo: 'Olá! Como você pode me ajudar hoje?',
+        hora: '14:30'
+      },
+      {
+        id: 2,
+        tipo: 'ia',
+        conteudo: 'Olá! Sou seu assistente de IA rodando localmente. Posso ajudá-lo com:\n\n• Responder perguntas gerais\n• Auxiliar na redação de textos\n• Análise de dados\n• Programação e código\n• Brainstorming de ideias',
+        hora: '14:30'
+      }
+    ]);
 
-  return (
-    <div style={{ padding: '24px', backgroundColor: '#f3f4f6', minHeight: '100vh' }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-        
-        {/* Cabeçalho */}
-        <div style={{ marginBottom: '32px' }}>
-          <h1 style={{ fontSize: '36px', fontWeight: 'bold', color: '#1f2937', marginBottom: '8px' }}>
-            🤖 Assistente IA Local
-          </h1>
-          <p style={{ color: '#6b7280' }}>
-            Interaja com modelos de IA rodando localmente no seu computador
-          </p>
-        </div>
+    const [inputMessage, setInputMessage] = useState('');
+    const [modeloAtivo, setModeloAtivo] = useState('Llama 3.2');
+    const [temperatura, setTemperatura] = useState(70);
 
-        {/* Cards de Status */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '24px', marginBottom: '32px' }}>
-          
-          <div style={{ backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', padding: '24px', borderLeft: '4px solid #10b981' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-              <h3 style={{ fontSize: '14px', fontWeight: '500', color: '#6b7280' }}>Status do Sistema</h3>
-              <span style={{ width: '12px', height: '12px', backgroundColor: '#10b981', borderRadius: '50%' }}></span>
-            </div>
-            <p style={{ fontSize: '24px', fontWeight: 'bold', color: '#10b981' }}>Online</p>
+    const handleEnviar = () => {
+      if (inputMessage.trim()) {
+        setMensagens([...mensagens, {
+          id: Date.now(),
+          tipo: 'usuario',
+          conteudo: inputMessage,
+          hora: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+        }]);
+        setInputMessage('');
+      }
+    };
+
+    return (
+      <div style={{ padding: '24px', backgroundColor: '#f3f4f6', minHeight: '100vh' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
+
+          {/* Cabeçalho */}
+          <div style={{ marginBottom: '32px' }}>
+            <h1 style={{ fontSize: '36px', fontWeight: 'bold', color: '#1f2937', marginBottom: '8px' }}>
+              🤖 Assistente IA Local
+            </h1>
+            <p style={{ color: '#6b7280' }}>
+              Interaja com modelos de IA rodando localmente no seu computador
+            </p>
           </div>
 
-          <div style={{ backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', padding: '24px', borderLeft: '4px solid #3b82f6' }}>
-            <h3 style={{ fontSize: '14px', fontWeight: '500', color: '#6b7280', marginBottom: '8px' }}>Modelo Ativo</h3>
-            <p style={{ fontSize: '20px', fontWeight: 'bold', color: '#3b82f6' }}>{modeloAtivo}</p>
-            <p style={{ fontSize: '12px', color: '#9ca3af', marginTop: '4px' }}>3B parâmetros</p>
-          </div>
+          {/* Cards de Status */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '24px', marginBottom: '32px' }}>
 
-          <div style={{ backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', padding: '24px', borderLeft: '4px solid #8b5cf6' }}>
-            <h3 style={{ fontSize: '14px', fontWeight: '500', color: '#6b7280', marginBottom: '8px' }}>Uso de RAM</h3>
-            <p style={{ fontSize: '24px', fontWeight: 'bold', color: '#8b5cf6' }}>4.2 GB</p>
-            <div style={{ width: '100%', backgroundColor: '#e5e7eb', borderRadius: '9999px', height: '8px', marginTop: '8px' }}>
-              <div style={{ width: '52%', backgroundColor: '#8b5cf6', height: '8px', borderRadius: '9999px' }}></div>
-            </div>
-          </div>
-
-          <div style={{ backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', padding: '24px', borderLeft: '4px solid #f97316' }}>
-            <h3 style={{ fontSize: '14px', fontWeight: '500', color: '#6b7280', marginBottom: '8px' }}>Conversas Hoje</h3>
-            <p style={{ fontSize: '24px', fontWeight: 'bold', color: '#f97316' }}>12</p>
-            <p style={{ fontSize: '12px', color: '#9ca3af', marginTop: '4px' }}>+3 desde ontem</p>
-          </div>
-        </div>
-
-        {/* Grid Principal */}
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '24px' }}>
-          
-          {/* Área de Chat */}
-          <div style={{ backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', display: 'flex', flexDirection: 'column', height: '600px' }}>
-            
-            {/* Header Chat */}
-            <div style={{ borderBottom: '1px solid #e5e7eb', padding: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div style={{ width: '40px', height: '40px', background: 'linear-gradient(to bottom right, #3b82f6, #8b5cf6)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 'bold' }}>
-                  AI
-                </div>
-                <div>
-                  <h3 style={{ fontWeight: '600', color: '#1f2937' }}>Assistente Local</h3>
-                  <p style={{ fontSize: '12px', color: '#10b981', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                    <span style={{ width: '8px', height: '8px', backgroundColor: '#10b981', borderRadius: '50%' }}></span>
-                    Disponível
-                  </p>
-                </div>
+            <div style={{ backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', padding: '24px', borderLeft: '4px solid #10b981' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                <h3 style={{ fontSize: '14px', fontWeight: '500', color: '#6b7280' }}>Status do Sistema</h3>
+                <span style={{ width: '12px', height: '12px', backgroundColor: '#10b981', borderRadius: '50%' }}></span>
               </div>
-              <button 
-                onClick={() => setMensagens([])}
-                style={{ padding: '8px 16px', backgroundColor: '#fef2f2', color: '#dc2626', borderRadius: '8px', border: 'none', cursor: 'pointer', fontSize: '14px', fontWeight: '500' }}
-              >
-                🗑️ Nova Conversa
-              </button>
+              <p style={{ fontSize: '24px', fontWeight: 'bold', color: '#10b981' }}>Online</p>
             </div>
 
-            {/* Mensagens */}
-            <div style={{ flex: 1, overflowY: 'auto', padding: '24px' }}>
-              {mensagens.map((msg) => (
-                <div key={msg.id} style={{ display: 'flex', justifyContent: msg.tipo === 'usuario' ? 'flex-end' : 'flex-start', marginBottom: '16px' }}>
-                  <div style={{ 
-                    backgroundColor: msg.tipo === 'usuario' ? '#3b82f6' : '#f3f4f6',
-                    color: msg.tipo === 'usuario' ? 'white' : '#1f2937',
-                    borderRadius: '8px',
-                    padding: '16px',
-                    maxWidth: '450px'
-                  }}>
-                    <p style={{ whiteSpace: 'pre-line', margin: 0 }}>{msg.conteudo}</p>
-                    <span style={{ fontSize: '12px', opacity: 0.7, display: 'block', marginTop: '8px' }}>
-                      {msg.hora}
-                    </span>
+            <div style={{ backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', padding: '24px', borderLeft: '4px solid #3b82f6' }}>
+              <h3 style={{ fontSize: '14px', fontWeight: '500', color: '#6b7280', marginBottom: '8px' }}>Modelo Ativo</h3>
+              <p style={{ fontSize: '20px', fontWeight: 'bold', color: '#3b82f6' }}>{modeloAtivo}</p>
+              <p style={{ fontSize: '12px', color: '#9ca3af', marginTop: '4px' }}>3B parâmetros</p>
+            </div>
+
+            <div style={{ backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', padding: '24px', borderLeft: '4px solid #8b5cf6' }}>
+              <h3 style={{ fontSize: '14px', fontWeight: '500', color: '#6b7280', marginBottom: '8px' }}>Uso de RAM</h3>
+              <p style={{ fontSize: '24px', fontWeight: 'bold', color: '#8b5cf6' }}>4.2 GB</p>
+              <div style={{ width: '100%', backgroundColor: '#e5e7eb', borderRadius: '9999px', height: '8px', marginTop: '8px' }}>
+                <div style={{ width: '52%', backgroundColor: '#8b5cf6', height: '8px', borderRadius: '9999px' }}></div>
+              </div>
+            </div>
+
+            <div style={{ backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', padding: '24px', borderLeft: '4px solid #f97316' }}>
+              <h3 style={{ fontSize: '14px', fontWeight: '500', color: '#6b7280', marginBottom: '8px' }}>Conversas Hoje</h3>
+              <p style={{ fontSize: '24px', fontWeight: 'bold', color: '#f97316' }}>12</p>
+              <p style={{ fontSize: '12px', color: '#9ca3af', marginTop: '4px' }}>+3 desde ontem</p>
+            </div>
+          </div>
+
+          {/* Grid Principal */}
+          <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '24px' }}>
+
+            {/* Área de Chat */}
+            <div style={{ backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', display: 'flex', flexDirection: 'column', height: '600px' }}>
+
+              {/* Header Chat */}
+              <div style={{ borderBottom: '1px solid #e5e7eb', padding: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div style={{ width: '40px', height: '40px', background: 'linear-gradient(to bottom right, #3b82f6, #8b5cf6)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 'bold' }}>
+                    AI
+                  </div>
+                  <div>
+                    <h3 style={{ fontWeight: '600', color: '#1f2937' }}>Assistente Local</h3>
+                    <p style={{ fontSize: '12px', color: '#10b981', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      <span style={{ width: '8px', height: '8px', backgroundColor: '#10b981', borderRadius: '50%' }}></span>
+                      Disponível
+                    </p>
                   </div>
                 </div>
-              ))}
-            </div>
-
-            {/* Input */}
-            <div style={{ borderTop: '1px solid #e5e7eb', padding: '16px' }}>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <input 
-                  type="text"
-                  value={inputMessage}
-                  onChange={(e) => setInputMessage(e.target.value)}
-                  onKeyUp={(e) => e.key === 'Enter' && handleEnviar()} // função depreciada atualizada
-                  placeholder="Digite sua mensagem..."
-                  style={{ flex: 1, padding: '12px 16px', border: '1px solid #d1d5db', borderRadius: '8px', fontSize: '14px' }}
-                />
-                <button 
-                  onClick={handleEnviar}
-                  style={{ padding: '12px 24px', backgroundColor: '#3b82f6', color: 'white', borderRadius: '8px', border: 'none', cursor: 'pointer', fontWeight: '500', display: 'flex', alignItems: 'center', gap: '8px' }}
+                <button
+                  onClick={() => setMensagens([])}
+                  style={{ padding: '8px 16px', backgroundColor: '#fef2f2', color: '#dc2626', borderRadius: '8px', border: 'none', cursor: 'pointer', fontSize: '14px', fontWeight: '500' }}
                 >
-                  <Send size={18} />
-                  Enviar
+                  🗑️ Nova Conversa
                 </button>
               </div>
-              <p style={{ fontSize: '12px', color: '#6b7280', marginTop: '8px', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                <Lock size={12} />
-                Processamento 100% local - Suas conversas não saem do seu computador
-              </p>
-            </div>
-          </div>
 
-          {/* Sidebar */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            
-            {/* Modelos */}
-            <div style={{ backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', padding: '24px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#1f2937', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Cpu size={20} color="#3b82f6" />
-                Modelos Disponíveis
-              </h3>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                {['Llama 3.2', 'Mistral 7B', 'Phi-3 Mini', 'CodeLlama'].map((modelo) => (
-                  <div 
-                    key={modelo}
-                    onClick={() => setModeloAtivo(modelo)}
-                    style={{ 
-                      padding: '12px',
-                      border: modelo === modeloAtivo ? '2px solid #3b82f6' : '1px solid #e5e7eb',
-                      backgroundColor: modelo === modeloAtivo ? '#eff6ff' : 'white',
+              {/* Mensagens */}
+              <div style={{ flex: 1, overflowY: 'auto', padding: '24px' }}>
+                {mensagens.map((msg) => (
+                  <div key={msg.id} style={{ display: 'flex', justifyContent: msg.tipo === 'usuario' ? 'flex-end' : 'flex-start', marginBottom: '16px' }}>
+                    <div style={{
+                      backgroundColor: msg.tipo === 'usuario' ? '#3b82f6' : '#f3f4f6',
+                      color: msg.tipo === 'usuario' ? 'white' : '#1f2937',
                       borderRadius: '8px',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <p style={{ fontWeight: '600', color: '#1f2937', margin: 0 }}>{modelo}</p>
-                      {modelo === modeloAtivo && (
-                        <span style={{ fontSize: '11px', backgroundColor: '#d1fae5', color: '#065f46', padding: '2px 8px', borderRadius: '9999px', fontWeight: '500' }}>
-                          Ativo
-                        </span>
-                      )}
+                      padding: '16px',
+                      maxWidth: '450px'
+                    }}>
+                      <p style={{ whiteSpace: 'pre-line', margin: 0 }}>{msg.conteudo}</p>
+                      <span style={{ fontSize: '12px', opacity: 0.7, display: 'block', marginTop: '8px' }}>
+                        {msg.hora}
+                      </span>
                     </div>
                   </div>
                 ))}
               </div>
+
+              {/* Input */}
+              <div style={{ borderTop: '1px solid #e5e7eb', padding: '16px' }}>
+                <div style={{ display: 'flex', gap: '8px' }}>
+                  <input
+                    type="text"
+                    value={inputMessage}
+                    onChange={(e) => setInputMessage(e.target.value)}
+                    onKeyUp={(e) => e.key === 'Enter' && handleEnviar()} // função depreciada atualizada
+                    placeholder="Digite sua mensagem..."
+                    style={{ flex: 1, padding: '12px 16px', border: '1px solid #d1d5db', borderRadius: '8px', fontSize: '14px' }}
+                  />
+                  <button
+                    onClick={handleEnviar}
+                    style={{ padding: '12px 24px', backgroundColor: '#3b82f6', color: 'white', borderRadius: '8px', border: 'none', cursor: 'pointer', fontWeight: '500', display: 'flex', alignItems: 'center', gap: '8px' }}
+                  >
+                    <Send size={18} />
+                    Enviar
+                  </button>
+                </div>
+                <p style={{ fontSize: '12px', color: '#6b7280', marginTop: '8px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  <Lock size={12} />
+                  Processamento 100% local - Suas conversas não saem do seu computador
+                </p>
+              </div>
             </div>
 
-            {/* Configurações */}
-            <div style={{ backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', padding: '24px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#1f2937', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Settings size={20} color="#8b5cf6" />
-                Configurações
-              </h3>
-              <div>
-                <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '8px' }}>
-                  Temperatura: {temperatura}%
-                </label>
-                <input 
-                  type="range"
-                  min="0"
-                  max="100"
-                  value={temperatura}
-                  onChange={(e) => setTemperatura(Number(e.target.value))}
-                  style={{ width: '100%' }}
-                />
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: '#6b7280', marginTop: '4px' }}>
-                  <span>Preciso</span>
-                  <span>Criativo</span>
+            {/* Sidebar */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+
+              {/* Modelos */}
+              <div style={{ backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', padding: '24px' }}>
+                <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#1f2937', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <Cpu size={20} color="#3b82f6" />
+                  Modelos Disponíveis
+                </h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  {['Llama 3.2', 'Mistral 7B', 'Phi-3 Mini', 'CodeLlama'].map((modelo) => (
+                    <div
+                      key={modelo}
+                      onClick={() => setModeloAtivo(modelo)}
+                      style={{
+                        padding: '12px',
+                        border: modelo === modeloAtivo ? '2px solid #3b82f6' : '1px solid #e5e7eb',
+                        backgroundColor: modelo === modeloAtivo ? '#eff6ff' : 'white',
+                        borderRadius: '8px',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <p style={{ fontWeight: '600', color: '#1f2937', margin: 0 }}>{modelo}</p>
+                        {modelo === modeloAtivo && (
+                          <span style={{ fontSize: '11px', backgroundColor: '#d1fae5', color: '#065f46', padding: '2px 8px', borderRadius: '9999px', fontWeight: '500' }}>
+                            Ativo
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Configurações */}
+              <div style={{ backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', padding: '24px' }}>
+                <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#1f2937', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <Settings size={20} color="#8b5cf6" />
+                  Configurações
+                </h3>
+                <div>
+                  <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '8px' }}>
+                    Temperatura: {temperatura}%
+                  </label>
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value={temperatura}
+                    onChange={(e) => setTemperatura(Number(e.target.value))}
+                    style={{ width: '100%' }}
+                  />
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: '#6b7280', marginTop: '4px' }}>
+                    <span>Preciso</span>
+                    <span>Criativo</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Histórico */}
+              <div style={{ backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', padding: '24px' }}>
+                <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#1f2937', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <Clock size={20} color="#f97316" />
+                  Histórico
+                </h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  {['Email profissional', 'Análise de dados', 'Código Python'].map((item, i) => (
+                    <div key={i} style={{ padding: '12px', backgroundColor: '#f9fafb', borderRadius: '8px', cursor: 'pointer' }}>
+                      <p style={{ fontSize: '14px', fontWeight: '500', color: '#1f2937', margin: 0 }}>{item}</p>
+                      <p style={{ fontSize: '12px', color: '#6b7280', margin: '4px 0 0 0' }}>Hoje, 14:30</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* Histórico */}
-            <div style={{ backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', padding: '24px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#1f2937', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Clock size={20} color="#f97316" />
-                Histórico
-              </h3>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                {['Email profissional', 'Análise de dados', 'Código Python'].map((item, i) => (
-                  <div key={i} style={{ padding: '12px', backgroundColor: '#f9fafb', borderRadius: '8px', cursor: 'pointer' }}>
-                    <p style={{ fontSize: '14px', fontWeight: '500', color: '#1f2937', margin: 0 }}>{item}</p>
-                    <p style={{ fontSize: '12px', color: '#6b7280', margin: '4px 0 0 0' }}>Hoje, 14:30</p>
-                  </div>
-                ))}
+          {/* Aviso de Privacidade */}
+          <div style={{ marginTop: '32px', background: 'linear-gradient(to right, #f0fdf4, #d1fae5)', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', padding: '24px', borderLeft: '4px solid #10b981' }}>
+            <div style={{ display: 'flex', gap: '16px' }}>
+              <Lock size={32} color="#059669" style={{ flexShrink: 0 }} />
+              <div>
+                <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#1f2937', marginBottom: '8px' }}>
+                  Privacidade Garantida
+                </h3>
+                <p style={{ color: '#374151', margin: 0, lineHeight: '1.6' }}>
+                  Todos os seus dados permanecem no seu computador. Nenhuma informação é enviada para servidores externos.
+                  A IA processa tudo localmente, garantindo total privacidade e segurança das suas conversas.
+                </p>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Aviso de Privacidade */}
-        <div style={{ marginTop: '32px', background: 'linear-gradient(to right, #f0fdf4, #d1fae5)', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', padding: '24px', borderLeft: '4px solid #10b981' }}>
-          <div style={{ display: 'flex', gap: '16px' }}>
-            <Lock size={32} color="#059669" style={{ flexShrink: 0 }} />
-            <div>
-              <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#1f2937', marginBottom: '8px' }}>
-                Privacidade Garantida
-              </h3>
-              <p style={{ color: '#374151', margin: 0, lineHeight: '1.6' }}>
-                Todos os seus dados permanecem no seu computador. Nenhuma informação é enviada para servidores externos.
-                A IA processa tudo localmente, garantindo total privacidade e segurança das suas conversas.
-              </p>
-            </div>
-          </div>
         </div>
-
       </div>
-    </div>
-  );
-};
+    );
+  };
 
-   // Página de Journal
+  // Página de Journal
   const JournalPage = () => {
     const [entradas] = useState([
       {
@@ -800,8 +800,8 @@ const IALocalPage = () => {
     const [filtroTipo, setFiltroTipo] = useState('Todos');
     const tipos = ['Todos', 'Reflexão', 'Aprendizado', 'Gratidão', 'Meta', 'Pessoal'];
 
-    const entradasFiltradas = filtroTipo === 'Todos' 
-      ? entradas 
+    const entradasFiltradas = filtroTipo === 'Todos'
+      ? entradas
       : entradas.filter(e => e.tipo === filtroTipo);
 
     const getTipoColor = (tipo: any) => {
@@ -867,11 +867,10 @@ const IALocalPage = () => {
                 <button
                   key={tipo}
                   onClick={() => setFiltroTipo(tipo)}
-                  className={`px-4 py-2 rounded-lg font-medium transition-all ${
-                    filtroTipo === tipo
+                  className={`px-4 py-2 rounded-lg font-medium transition-all ${filtroTipo === tipo
                       ? 'bg-blue-600 text-white shadow-md'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
+                    }`}
                 >
                   {tipo}
                 </button>
@@ -926,7 +925,7 @@ const IALocalPage = () => {
                 {/* Tags */}
                 <div className="flex flex-wrap gap-2 pt-4 border-t">
                   {entrada.tags.map((tag, index) => (
-                    <span 
+                    <span
                       key={index}
                       className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium hover:bg-gray-200 transition-colors cursor-pointer"
                     >
@@ -959,7 +958,7 @@ const IALocalPage = () => {
             <div>
               <h3 className="text-lg font-semibold text-gray-800 mb-2">Dica de Journaling</h3>
               <p className="text-gray-700">
-                Escrever no journal pela manhã ajuda a organizar seus pensamentos e definir intenções para o dia. 
+                Escrever no journal pela manhã ajuda a organizar seus pensamentos e definir intenções para o dia.
                 À noite, use para refletir sobre suas conquistas e aprendizados.
               </p>
             </div>
@@ -1043,612 +1042,615 @@ const IALocalPage = () => {
     </>
   );
 
-const UsuariosPage = () => {
-  const [modalAberto, setModalAberto] = useState(false);
-  const [clienteSelecionado, setClienteSelecionado] = useState(null);
+  const UsuariosPage = () => {
+    const [modalAberto, setModalAberto] = useState(false);
+    const [clienteSelecionado, setClienteSelecionado] = useState(null);
 
-  const [usuarios] = useState([
-    {
-      id: 1,
-      nome: "João Silva",
-      email: "joao.silva@empresa.com",
-      telefone: "(11) 98765-4321",
-      tipo: "Cliente da Plataforma",
-      empresaVinculada: null,
-      plano: "Premium",
-      status: "Ativo",
-      dataCadastro: "15/01/2025",
-      mensalidade: "R$ 299,00"
-    },
-    {
-      id: 2,
-      nome: "Maria Santos",
-      email: "maria.santos@comercio.com",
-      telefone: "(11) 97654-3210",
-      tipo: "Cliente da Plataforma",
-      empresaVinculada: null,
-      plano: "Básico",
-      status: "Ativo",
-      dataCadastro: "20/01/2025",
-      mensalidade: "R$ 149,00"
-    },
-    {
-      id: 3,
-      nome: "Carlos Oliveira",
-      email: "carlos@email.com",
-      telefone: "(11) 96543-2109",
-      whatsapp: "(11) 96543-2109",
-      tipo: "Cliente de Terceiro",
-      empresaVinculada: "Tech Solutions Ltda",
-      plano: "-",
-      status: "Ativo",
-      dataCadastro: "22/01/2025",
-      mensalidade: "-",
-      dadosDetalhados: {
-        endereco: "Rua das Flores, 123 - Centro, São Paulo - SP",
-        preferenciasGasto: [
-          { categoria: "Marmitas", cnae: "5611-2/01", percentual: 45 },
-          { categoria: "Salgados", cnae: "5611-2/03", percentual: 30 },
-          { categoria: "Bebidas", cnae: "5611-2/02", percentual: 25 }
-        ],
-        totalGasto: 2850.00,
-        periodoMaisGasto: {
-          meses: ["Janeiro", "Março"],
-          dias: ["Segunda-feira", "Quinta-feira"]
-        },
-        formasPagamento: [
-          { tipo: "PIX", percentual: 60, vezes: 24 },
-          { tipo: "Cartão", percentual: 30, vezes: 12 },
-          { tipo: "Dinheiro", percentual: 10, vezes: 4 }
-        ],
-        horariosPico: ["12:00 - 13:00", "18:30 - 19:30"],
-        historicoCompras: [
-          { data: "05/02/2025", valor: 45.00, items: "2x Marmita" },
-          { data: "02/02/2025", valor: 35.00, items: "Salgados + Refrigerante" },
-          { data: "29/01/2025", valor: 50.00, items: "3x Marmita" }
-        ]
+    const [usuarios] = useState([
+      {
+        id: 1,
+        nome: "João Silva",
+        email: "joao.silva@empresa.com",
+        telefone: "(11) 98765-4321",
+        tipo: "Cliente da Plataforma",
+        empresaVinculada: null,
+        plano: "Premium",
+        status: "Ativo",
+        dataCadastro: "15/01/2025",
+        mensalidade: "R$ 299,00"
+      },
+      {
+        id: 2,
+        nome: "Maria Santos",
+        email: "maria.santos@comercio.com",
+        telefone: "(11) 97654-3210",
+        tipo: "Cliente da Plataforma",
+        empresaVinculada: null,
+        plano: "Básico",
+        status: "Ativo",
+        dataCadastro: "20/01/2025",
+        mensalidade: "R$ 149,00"
+      },
+      {
+        id: 3,
+        nome: "Carlos Oliveira",
+        email: "carlos@email.com",
+        telefone: "(11) 96543-2109",
+        whatsapp: "(11) 96543-2109",
+        tipo: "Cliente de Terceiro",
+        empresaVinculada: "Tech Solutions Ltda",
+        plano: "-",
+        status: "Ativo",
+        dataCadastro: "22/01/2025",
+        mensalidade: "-",
+        dadosDetalhados: {
+          endereco: "Rua das Flores, 123 - Centro, São Paulo - SP",
+          preferenciasGasto: [
+            { categoria: "Marmitas", cnae: "5611-2/01", percentual: 45 },
+            { categoria: "Salgados", cnae: "5611-2/03", percentual: 30 },
+            { categoria: "Bebidas", cnae: "5611-2/02", percentual: 25 }
+          ],
+          totalGasto: 2850.00,
+          periodoMaisGasto: {
+            meses: ["Janeiro", "Março"],
+            dias: ["Segunda-feira", "Quinta-feira"]
+          },
+          formasPagamento: [
+            { tipo: "PIX", percentual: 60, vezes: 24 },
+            { tipo: "Cartão", percentual: 30, vezes: 12 },
+            { tipo: "Dinheiro", percentual: 10, vezes: 4 }
+          ],
+          horariosPico: ["12:00 - 13:00", "18:30 - 19:30"],
+          historicoCompras: [
+            { data: "05/02/2025", valor: 45.00, items: "2x Marmita" },
+            { data: "02/02/2025", valor: 35.00, items: "Salgados + Refrigerante" },
+            { data: "29/01/2025", valor: 50.00, items: "3x Marmita" }
+          ]
+        }
+      },
+      {
+        id: 4,
+        nome: "Ana Costa",
+        email: "ana.costa@startup.com",
+        telefone: "(21) 95432-1098",
+        tipo: "Cliente da Plataforma",
+        empresaVinculada: null,
+        plano: "Enterprise",
+        status: "Ativo",
+        dataCadastro: "10/01/2025",
+        mensalidade: "R$ 599,00"
+      },
+      {
+        id: 5,
+        nome: "Pedro Almeida",
+        email: "pedro.almeida@email.com",
+        telefone: "(11) 94321-0987",
+        whatsapp: "(11) 94321-0987",
+        tipo: "Cliente de Terceiro",
+        empresaVinculada: "Tech Solutions Ltda",
+        plano: "-",
+        status: "Ativo",
+        dataCadastro: "25/01/2025",
+        mensalidade: "-",
+        dadosDetalhados: {
+          endereco: "Av. Paulista, 1000 - Bela Vista, São Paulo - SP",
+          preferenciasGasto: [
+            { categoria: "Doces", cnae: "5611-2/04", percentual: 55 },
+            { categoria: "Café", cnae: "5611-2/02", percentual: 35 },
+            { categoria: "Salgados", cnae: "5611-2/03", percentual: 10 }
+          ],
+          totalGasto: 1620.00,
+          periodoMaisGasto: {
+            meses: ["Fevereiro"],
+            dias: ["Terça-feira", "Sexta-feira"]
+          },
+          formasPagamento: [
+            { tipo: "Cartão", percentual: 70, vezes: 28 },
+            { tipo: "PIX", percentual: 25, vezes: 10 },
+            { tipo: "Dinheiro", percentual: 5, vezes: 2 }
+          ],
+          horariosPico: ["09:00 - 10:00", "15:00 - 16:00"],
+          historicoCompras: [
+            { data: "06/02/2025", valor: 28.00, items: "Doces variados" },
+            { data: "04/02/2025", valor: 15.00, items: "Café + Croissant" },
+            { data: "01/02/2025", valor: 32.00, items: "Torta + Café" }
+          ]
+        }
+      },
+      {
+        id: 6,
+        nome: "Juliana Ferreira",
+        email: "juliana@email.com",
+        telefone: "(31) 93210-9876",
+        tipo: "Cliente de Terceiro",
+        empresaVinculada: "Comercial ABC",
+        plano: "-",
+        status: "Inativo",
+        dataCadastro: "18/01/2025",
+        mensalidade: "-",
+        dadosDetalhados: {
+          endereco: "Rua Bahia, 456 - Funcionários, Belo Horizonte - MG",
+          preferenciasGasto: [
+            { categoria: "Marmitas", cnae: "5611-2/01", percentual: 80 },
+            { categoria: "Bebidas", cnae: "5611-2/02", percentual: 20 }
+          ],
+          totalGasto: 890.00,
+          periodoMaisGasto: {
+            meses: ["Janeiro"],
+            dias: ["Quarta-feira"]
+          },
+          formasPagamento: [
+            { tipo: "Dinheiro", percentual: 60, vezes: 15 },
+            { tipo: "PIX", percentual: 40, vezes: 10 }
+          ],
+          horariosPico: ["12:30 - 13:30"],
+          historicoCompras: [
+            { data: "15/01/2025", valor: 40.00, items: "Marmita Executiva" },
+            { data: "12/01/2025", valor: 45.00, items: "Marmita + Suco" }
+          ]
+        }
+      },
+      {
+        id: 7,
+        nome: "Roberto Lima",
+        email: "roberto.lima@tech.com",
+        telefone: "(11) 92109-8765",
+        tipo: "Cliente da Plataforma",
+        empresaVinculada: null,
+        plano: "Premium",
+        status: "Pendente",
+        dataCadastro: "28/01/2025",
+        mensalidade: "R$ 299,00"
+      },
+      {
+        id: 8,
+        nome: "Fernanda Souza",
+        email: "fernanda.souza@email.com",
+        telefone: "(21) 91098-7654",
+        whatsapp: "(21) 91098-7654",
+        tipo: "Cliente de Terceiro",
+        empresaVinculada: "Comercial ABC",
+        plano: "-",
+        status: "Ativo",
+        dataCadastro: "12/01/2025",
+        mensalidade: "-",
+        dadosDetalhados: {
+          endereco: "Rua do Catete, 789 - Catete, Rio de Janeiro - RJ",
+          preferenciasGasto: [
+            { categoria: "Lanches", cnae: "5611-2/03", percentual: 40 },
+            { categoria: "Sucos Naturais", cnae: "5611-2/02", percentual: 35 },
+            { categoria: "Sobremesas", cnae: "5611-2/04", percentual: 25 }
+          ],
+          totalGasto: 3420.00,
+          periodoMaisGasto: {
+            meses: ["Janeiro", "Fevereiro"],
+            dias: ["Segunda-feira", "Quarta-feira", "Sexta-feira"]
+          },
+          formasPagamento: [
+            { tipo: "PIX", percentual: 50, vezes: 35 },
+            { tipo: "Cartão", percentual: 45, vezes: 31 },
+            { tipo: "Dinheiro", percentual: 5, vezes: 4 }
+          ],
+          horariosPico: ["11:00 - 12:00", "16:00 - 17:00"],
+          historicoCompras: [
+            { data: "07/02/2025", valor: 52.00, items: "Lanches + Sucos" },
+            { data: "05/02/2025", valor: 38.00, items: "Hambúrguer + Refrigerante" },
+            { data: "03/02/2025", valor: 45.00, items: "Combo Lanche" }
+          ]
+        }
       }
-    },
-    {
-      id: 4,
-      nome: "Ana Costa",
-      email: "ana.costa@startup.com",
-      telefone: "(21) 95432-1098",
-      tipo: "Cliente da Plataforma",
-      empresaVinculada: null,
-      plano: "Enterprise",
-      status: "Ativo",
-      dataCadastro: "10/01/2025",
-      mensalidade: "R$ 599,00"
-    },
-    {
-      id: 5,
-      nome: "Pedro Almeida",
-      email: "pedro.almeida@email.com",
-      telefone: "(11) 94321-0987",
-      whatsapp: "(11) 94321-0987",
-      tipo: "Cliente de Terceiro",
-      empresaVinculada: "Tech Solutions Ltda",
-      plano: "-",
-      status: "Ativo",
-      dataCadastro: "25/01/2025",
-      mensalidade: "-",
-      dadosDetalhados: {
-        endereco: "Av. Paulista, 1000 - Bela Vista, São Paulo - SP",
-        preferenciasGasto: [
-          { categoria: "Doces", cnae: "5611-2/04", percentual: 55 },
-          { categoria: "Café", cnae: "5611-2/02", percentual: 35 },
-          { categoria: "Salgados", cnae: "5611-2/03", percentual: 10 }
-        ],
-        totalGasto: 1620.00,
-        periodoMaisGasto: {
-          meses: ["Fevereiro"],
-          dias: ["Terça-feira", "Sexta-feira"]
-        },
-        formasPagamento: [
-          { tipo: "Cartão", percentual: 70, vezes: 28 },
-          { tipo: "PIX", percentual: 25, vezes: 10 },
-          { tipo: "Dinheiro", percentual: 5, vezes: 2 }
-        ],
-        horariosPico: ["09:00 - 10:00", "15:00 - 16:00"],
-        historicoCompras: [
-          { data: "06/02/2025", valor: 28.00, items: "Doces variados" },
-          { data: "04/02/2025", valor: 15.00, items: "Café + Croissant" },
-          { data: "01/02/2025", valor: 32.00, items: "Torta + Café" }
-        ]
+    ]);
+
+    const abrirModal = (usuario: React.SetStateAction<null> | { id: number; nome: string; email: string; telefone: string; tipo: string; empresaVinculada: null; plano: string; status: string; dataCadastro: string; mensalidade: string; whatsapp?: undefined; dadosDetalhados?: undefined; } | { id: number; nome: string; email: string; telefone: string; whatsapp: string; tipo: string; empresaVinculada: string; plano: string; status: string; dataCadastro: string; mensalidade: string; dadosDetalhados: { endereco: string; preferenciasGasto: { categoria: string; cnae: string; percentual: number; }[]; totalGasto: number; periodoMaisGasto: { meses: string[]; dias: string[]; }; formasPagamento: { tipo: string; percentual: number; vezes: number; }[]; horariosPico: string[]; historicoCompras: { data: string; valor: number; items: string; }[]; }; } | { id: number; nome: string; email: string; telefone: string; tipo: string; empresaVinculada: string; plano: string; status: string; dataCadastro: string; mensalidade: string; dadosDetalhados: { endereco: string; preferenciasGasto: { categoria: string; cnae: string; percentual: number; }[]; totalGasto: number; periodoMaisGasto: { meses: string[]; dias: string[]; }; formasPagamento: { tipo: string; percentual: number; vezes: number; }[]; horariosPico: string[]; historicoCompras: { data: string; valor: number; items: string; }[]; }; whatsapp?: undefined; }) => {
+      if (usuario?.tipo === "Cliente de Terceiro" && usuario?.dadosDetalhados) {
+        setClienteSelecionado(usuario);
+        setModalAberto(true);
       }
-    },
-    {
-      id: 6,
-      nome: "Juliana Ferreira",
-      email: "juliana@email.com",
-      telefone: "(31) 93210-9876",
-      tipo: "Cliente de Terceiro",
-      empresaVinculada: "Comercial ABC",
-      plano: "-",
-      status: "Inativo",
-      dataCadastro: "18/01/2025",
-      mensalidade: "-",
-      dadosDetalhados: {
-        endereco: "Rua Bahia, 456 - Funcionários, Belo Horizonte - MG",
-        preferenciasGasto: [
-          { categoria: "Marmitas", cnae: "5611-2/01", percentual: 80 },
-          { categoria: "Bebidas", cnae: "5611-2/02", percentual: 20 }
-        ],
-        totalGasto: 890.00,
-        periodoMaisGasto: {
-          meses: ["Janeiro"],
-          dias: ["Quarta-feira"]
-        },
-        formasPagamento: [
-          { tipo: "Dinheiro", percentual: 60, vezes: 15 },
-          { tipo: "PIX", percentual: 40, vezes: 10 }
-        ],
-        horariosPico: ["12:30 - 13:30"],
-        historicoCompras: [
-          { data: "15/01/2025", valor: 40.00, items: "Marmita Executiva" },
-          { data: "12/01/2025", valor: 45.00, items: "Marmita + Suco" }
-        ]
+    };
+
+    const fecharModal = () => {
+      setModalAberto(false);
+      setClienteSelecionado(null);
+    };
+
+    const getStatusColor = (status: any) => {
+      switch (status) {
+        case 'Ativo':
+          return 'bg-green-100 text-green-800';
+        case 'Inativo':
+          return 'bg-red-100 text-red-800';
+        case 'Pendente':
+          return 'bg-yellow-100 text-yellow-800';
+        default:
+          return 'bg-gray-100 text-gray-800';
       }
-    },
-    {
-      id: 7,
-      nome: "Roberto Lima",
-      email: "roberto.lima@tech.com",
-      telefone: "(11) 92109-8765",
-      tipo: "Cliente da Plataforma",
-      empresaVinculada: null,
-      plano: "Premium",
-      status: "Pendente",
-      dataCadastro: "28/01/2025",
-      mensalidade: "R$ 299,00"
-    },
-    {
-      id: 8,
-      nome: "Fernanda Souza",
-      email: "fernanda.souza@email.com",
-      telefone: "(21) 91098-7654",
-      whatsapp: "(21) 91098-7654",
-      tipo: "Cliente de Terceiro",
-      empresaVinculada: "Comercial ABC",
-      plano: "-",
-      status: "Ativo",
-      dataCadastro: "12/01/2025",
-      mensalidade: "-",
-      dadosDetalhados: {
-        endereco: "Rua do Catete, 789 - Catete, Rio de Janeiro - RJ",
-        preferenciasGasto: [
-          { categoria: "Lanches", cnae: "5611-2/03", percentual: 40 },
-          { categoria: "Sucos Naturais", cnae: "5611-2/02", percentual: 35 },
-          { categoria: "Sobremesas", cnae: "5611-2/04", percentual: 25 }
-        ],
-        totalGasto: 3420.00,
-        periodoMaisGasto: {
-          meses: ["Janeiro", "Fevereiro"],
-          dias: ["Segunda-feira", "Quarta-feira", "Sexta-feira"]
-        },
-        formasPagamento: [
-          { tipo: "PIX", percentual: 50, vezes: 35 },
-          { tipo: "Cartão", percentual: 45, vezes: 31 },
-          { tipo: "Dinheiro", percentual: 5, vezes: 4 }
-        ],
-        horariosPico: ["11:00 - 12:00", "16:00 - 17:00"],
-        historicoCompras: [
-          { data: "07/02/2025", valor: 52.00, items: "Lanches + Sucos" },
-          { data: "05/02/2025", valor: 38.00, items: "Hambúrguer + Refrigerante" },
-          { data: "03/02/2025", valor: 45.00, items: "Combo Lanche" }
-        ]
-      }
-    }
-  ]);
+    };
 
-  const abrirModal = (usuario: React.SetStateAction<null> | { id: number; nome: string; email: string; telefone: string; tipo: string; empresaVinculada: null; plano: string; status: string; dataCadastro: string; mensalidade: string; whatsapp?: undefined; dadosDetalhados?: undefined; } | { id: number; nome: string; email: string; telefone: string; whatsapp: string; tipo: string; empresaVinculada: string; plano: string; status: string; dataCadastro: string; mensalidade: string; dadosDetalhados: { endereco: string; preferenciasGasto: { categoria: string; cnae: string; percentual: number; }[]; totalGasto: number; periodoMaisGasto: { meses: string[]; dias: string[]; }; formasPagamento: { tipo: string; percentual: number; vezes: number; }[]; horariosPico: string[]; historicoCompras: { data: string; valor: number; items: string; }[]; }; } | { id: number; nome: string; email: string; telefone: string; tipo: string; empresaVinculada: string; plano: string; status: string; dataCadastro: string; mensalidade: string; dadosDetalhados: { endereco: string; preferenciasGasto: { categoria: string; cnae: string; percentual: number; }[]; totalGasto: number; periodoMaisGasto: { meses: string[]; dias: string[]; }; formasPagamento: { tipo: string; percentual: number; vezes: number; }[]; horariosPico: string[]; historicoCompras: { data: string; valor: number; items: string; }[]; }; whatsapp?: undefined; }) => {
-    if (usuario?.tipo === "Cliente de Terceiro" && usuario?.dadosDetalhados) {
-      setClienteSelecionado(usuario);
-      setModalAberto(true);
-    }
-  };
+    const getTipoColor = (tipo: any) => {
+      return tipo === 'Cliente da Plataforma'
+        ? 'bg-blue-100 text-blue-800 border border-blue-200'
+        : 'bg-purple-100 text-purple-800 border border-purple-200';
+    };
 
-  const fecharModal = () => {
-    setModalAberto(false);
-    setClienteSelecionado(null);
-  };
+    const getTipoIcon = (tipo: any) => {
+      return tipo === 'Cliente da Plataforma' ? User : Building2;
+    };
 
-  const getStatusColor = (status: any) => {
-    switch (status) {
-      case 'Ativo':
-        return 'bg-green-100 text-green-800';
-      case 'Inativo':
-        return 'bg-red-100 text-red-800';
-      case 'Pendente':
-        return 'bg-yellow-100 text-yellow-800';
-      default:
-        return 'bg-gray-100 text-gray-800';
-    }
-  };
-
-  const getTipoColor = (tipo: any) => {
-    return tipo === 'Cliente da Plataforma' 
-      ? 'bg-blue-100 text-blue-800 border border-blue-200' 
-      : 'bg-purple-100 text-purple-800 border border-purple-200';
-  };
-
-  const getTipoIcon = (tipo: any) => {
-    return tipo === 'Cliente da Plataforma' ? User : Building2;
-  };
-
-  return (
-    <>
-      <div className="mb-8 flex justify-between items-center">
-        <div>
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">Usuários</h1>
-          <p className="text-gray-600">Gerencie clientes da plataforma e clientes de terceiros</p>
-        </div>
-        <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center gap-2 transition-colors">
-          <Plus className="w-5 h-5" />
-          Novo Usuário
-        </button>
-      </div>
-
-      {/* Cards de Resumo */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-        <div className="bg-white rounded-lg shadow-md p-6 border-l-4 border-blue-500">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-600 text-sm font-medium">Clientes da Plataforma</p>
-              <p className="text-3xl font-bold text-gray-800 mt-2">
-                {usuarios.filter(u => u.tipo === 'Cliente da Plataforma').length}
-              </p>
-            </div>
-            <div className="bg-blue-100 p-3 rounded-full">
-              <User className="w-8 h-8 text-blue-600" />
-            </div>
+    return (
+      <>
+        <div className="mb-8 flex justify-between items-center">
+          <div>
+            <h1 className="text-4xl font-bold text-gray-800 mb-2">Usuários</h1>
+            <p className="text-gray-600">Gerencie clientes da plataforma e clientes de terceiros</p>
           </div>
-        </div>
-
-        <div className="bg-white rounded-lg shadow-md p-6 border-l-4 border-purple-500">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-600 text-sm font-medium">Clientes de Terceiros</p>
-              <p className="text-3xl font-bold text-gray-800 mt-2">
-                {usuarios.filter(u => u.tipo === 'Cliente de Terceiro').length}
-              </p>
-            </div>
-            <div className="bg-purple-100 p-3 rounded-full">
-              <Building2 className="w-8 h-8 text-purple-600" />
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white rounded-lg shadow-md p-6 border-l-4 border-green-500">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-600 text-sm font-medium">Receita Mensal</p>
-              <p className="text-3xl font-bold text-gray-800 mt-2">
-                R$ {usuarios
-                  .filter(u => u.tipo === 'Cliente da Plataforma' && u.status === 'Ativo')
-                  .reduce((acc, u) => acc + parseFloat(u.mensalidade.replace('R$ ', '').replace(',', '.')), 0)
-                  .toFixed(2)
-                  .replace('.', ',')}
-              </p>
-            </div>
-            <div className="bg-green-100 p-3 rounded-full">
-              <span className="text-2xl font-bold text-green-600">R$</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-        <div className="flex gap-4 mb-4">
-          <div className="flex-1 relative">
-            <Search className="w-5 h-5 absolute left-3 top-3 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Buscar usuários..."
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
-            <Filter className="w-5 h-5" />
-            Filtrar
-          </button>
-          <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
-            <Download className="w-5 h-5" />
-            Exportar
+          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center gap-2 transition-colors">
+            <Plus className="w-5 h-5" />
+            Novo Usuário
           </button>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Telefone</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Empresa/Plano</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mensalidade</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {usuarios.map((usuario) => {
-                const IconComponent = getTipoIcon(usuario.tipo);
-                return (
-                  <tr key={usuario.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">{usuario.nome}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-600">{usuario.email}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-600">{usuario.telefone}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1 w-fit ${getTipoColor(usuario.tipo)}`}>
-                        <IconComponent className="w-3 h-3" />
-                        {usuario.tipo}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-600">
-                      {usuario.empresaVinculada ? (
-                        <div className="flex items-center gap-1">
-                          <Building2 className="w-4 h-4 text-purple-600" />
-                          <span className="text-sm">{usuario.empresaVinculada}</span>
+        {/* Cards de Resumo */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          <div className="bg-white rounded-lg shadow-md p-6 border-l-4 border-blue-500">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-gray-600 text-sm font-medium">Clientes da Plataforma</p>
+                <p className="text-3xl font-bold text-gray-800 mt-2">
+                  {usuarios.filter(u => u.tipo === 'Cliente da Plataforma').length}
+                </p>
+              </div>
+              <div className="bg-blue-100 p-3 rounded-full">
+                <User className="w-8 h-8 text-blue-600" />
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg shadow-md p-6 border-l-4 border-purple-500">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-gray-600 text-sm font-medium">Clientes de Terceiros</p>
+                <p className="text-3xl font-bold text-gray-800 mt-2">
+                  {usuarios.filter(u => u.tipo === 'Cliente de Terceiro').length}
+                </p>
+              </div>
+              <div className="bg-purple-100 p-3 rounded-full">
+                <Building2 className="w-8 h-8 text-purple-600" />
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg shadow-md p-6 border-l-4 border-green-500">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-gray-600 text-sm font-medium">Receita Mensal</p>
+                <p className="text-3xl font-bold text-gray-800 mt-2">
+                  R$ {usuarios
+                    .filter(u => u.tipo === 'Cliente da Plataforma' && u.status === 'Ativo')
+                    .reduce((acc, u) => acc + parseFloat(u.mensalidade.replace('R$ ', '').replace(',', '.')), 0)
+                    .toFixed(2)
+                    .replace('.', ',')}
+                </p>
+              </div>
+              <div className="bg-green-100 p-3 rounded-full">
+                <span className="text-2xl font-bold text-green-600">R$</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+          <div className="flex gap-4 mb-4">
+            <div className="flex-1 relative">
+              <Search className="w-5 h-5 absolute left-3 top-3 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Buscar usuários..."
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+              <Filter className="w-5 h-5" />
+              Filtrar
+            </button>
+            <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+              <Download className="w-5 h-5" />
+              Exportar
+            </button>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Telefone</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Empresa/Plano</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mensalidade</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {usuarios.map((usuario) => {
+                  const IconComponent = getTipoIcon(usuario.tipo);
+                  return (
+                    <tr key={usuario.id} className="hover:bg-gray-50">
+                      <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">{usuario.nome}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-gray-600">{usuario.email}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-gray-600">{usuario.telefone}</td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <span className={`px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1 w-fit ${getTipoColor(usuario.tipo)}`}>
+                          <IconComponent className="w-3 h-3" />
+                          {usuario.tipo}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-gray-600">
+                        {usuario.empresaVinculada ? (
+                          <div className="flex items-center gap-1">
+                            <Building2 className="w-4 h-4 text-purple-600" />
+                            <span className="text-sm">{usuario.empresaVinculada}</span>
+                          </div>
+                        ) : (
+                          <span className="font-medium text-blue-600">{usuario.plano}</span>
+                        )}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(usuario.status)}`}>
+                          {usuario.status}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <span className={`font-semibold ${usuario.mensalidade !== '-' ? 'text-green-600' : 'text-gray-400'}`}>
+                          {usuario.mensalidade}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => abrirModal(usuario)}
+                            className={`${usuario.tipo === 'Cliente de Terceiro' ? 'text-blue-600 hover:text-blue-800' : 'text-gray-400 cursor-not-allowed'}`}
+                            disabled={usuario.tipo !== 'Cliente de Terceiro'}
+                          >
+                            <Eye className="w-5 h-5" />
+                          </button>
+                          <button className="text-green-600 hover:text-green-800">
+                            <Edit className="w-5 h-5" />
+                          </button>
+                          <button className="text-red-600 hover:text-red-800">
+                            <Trash2 className="w-5 h-5" />
+                          </button>
                         </div>
-                      ) : (
-                        <span className="font-medium text-blue-600">{usuario.plano}</span>
-                      )}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(usuario.status)}`}>
-                        {usuario.status}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`font-semibold ${usuario.mensalidade !== '-' ? 'text-green-600' : 'text-gray-400'}`}>
-                        {usuario.mensalidade}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="flex gap-2">
-                        <button 
-                          onClick={() => abrirModal(usuario)}
-                          className={`${usuario.tipo === 'Cliente de Terceiro' ? 'text-blue-600 hover:text-blue-800' : 'text-gray-400 cursor-not-allowed'}`}
-                          disabled={usuario.tipo !== 'Cliente de Terceiro'}
-                        >
-                          <Eye className="w-5 h-5" />
-                        </button>
-                        <button className="text-green-600 hover:text-green-800">
-                          <Edit className="w-5 h-5" />
-                        </button>
-                        <button className="text-red-600 hover:text-red-800">
-                          <Trash2 className="w-5 h-5" />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
 
-      {/* Modal de Detalhes do Cliente */}
-      {modalAberto && clienteSelecionado && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto">
-            {/* Cabeçalho do Modal */}
-            <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white p-6 rounded-t-lg sticky top-0 z-10">
-              <div className="flex justify-between items-start">
-                <div>
-                  <h2 className="text-2xl font-bold mb-2">{clienteSelecionado?.nome}</h2>
-                  <p className="text-purple-100 text-sm">Cliente de Terceiro - {clienteSelecionado?.empresaVinculada}</p>
+        {/* Modal de Detalhes do Cliente */}
+        {modalAberto && clienteSelecionado && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-lg shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto">
+              {/* Cabeçalho do Modal */}
+              <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white p-6 rounded-t-lg sticky top-0 z-10">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h2 className="text-2xl font-bold mb-2">{clienteSelecionado?.nome}</h2>
+                    <p className="text-purple-100 text-sm">Cliente de Terceiro - {clienteSelecionado?.empresaVinculada}</p>
+                  </div>
+                  <button
+                    onClick={fecharModal}
+                    className="text-white hover:bg-purple-800 rounded-full p-2 transition-colors"
+                  >
+                    <X className="w-6 h-6" />
+                  </button>
                 </div>
-                <button 
+              </div>
+
+              {/* Conteúdo do Modal */}
+              <div className="p-6 space-y-6">
+
+                {/* Informações de Contato */}
+                <div className="bg-gray-50 rounded-lg p-5">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                    <Phone className="w-5 h-5 text-purple-600" />
+                    Informações de Contato
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {clienteSelecionado['whatsapp'] && (
+                      <div className="flex items-center gap-3 bg-white p-3 rounded-lg">
+                        <Phone className="w-5 h-5 text-green-600" />
+                        <div>
+                          <p className="text-xs text-gray-500">WhatsApp</p>
+                          <p className="font-medium text-gray-800">{clienteSelecionado['whatsapp']}</p>
+                        </div>
+                      </div>
+                    )}
+                    {clienteSelecionado['email'] && (
+                      <div className="flex items-center gap-3 bg-white p-3 rounded-lg">
+                        <Mail className="w-5 h-5 text-blue-600" />
+                        <div>
+                          <p className="text-xs text-gray-500">E-mail</p>
+                          <p className="font-medium text-gray-800">{clienteSelecionado['email']}</p>
+                        </div>
+                      </div>
+                    )}
+                    <div className="flex items-center gap-3 bg-white p-3 rounded-lg md:col-span-2">
+                      <MapPin className="w-5 h-5 text-red-600" />
+                      <div>
+                        <p className="text-xs text-gray-500">Endereço</p>
+                        <p className="font-medium text-gray-800">{clienteSelecionado['dadosDetalhados']['endereco']}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Resumo Financeiro */}
+                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-5 border border-green-200">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                    <DollarSign className="w-5 h-5 text-green-600" />
+                    Resumo Financeiro
+                  </h3>
+                  <div className="bg-white rounded-lg p-4">
+                    <p className="text-sm text-gray-600 mb-2">Total Gasto Acumulado</p>
+                    <p className="text-4xl font-bold text-green-600">
+                      R$
+                      {clienteSelecionado['dadosDetalhados']['totalGasto']
+                        //.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                      }
+                    </p>
+                  </div>
+                </div>
+
+                {/* Preferências de Gasto */}
+                <div className="bg-gray-50 rounded-lg p-5">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                    <ShoppingBag className="w-5 h-5 text-purple-600" />
+                    Preferências de Gasto
+                  </h3>
+                  <div className="space-y-3">
+                    {clienteSelecionado.dadosDetalhados.preferenciasGasto.map((pref: { categoria: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; cnae: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; percentual: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; }, index: React.Key | null | undefined) => (
+                      <div key={index} className="bg-white rounded-lg p-4">
+                        <div className="flex justify-between items-center mb-2">
+                          <div>
+                            <p className="font-semibold text-gray-800">{pref.categoria}</p>
+                            <p className="text-xs text-gray-500">CNAE: {pref.cnae}</p>
+                          </div>
+                          <span className="text-lg font-bold text-purple-600">{pref.percentual}%</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div
+                            className="bg-purple-600 h-2 rounded-full transition-all"
+                            style={{ width: `${pref.percentual}%` }}
+                          ></div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Formas de Pagamento */}
+                <div className="bg-gray-50 rounded-lg p-5">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                    <CreditCard className="w-5 h-5 text-purple-600" />
+                    Formas de Pagamento Mais Usadas
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {clienteSelecionado.dadosDetalhados.formasPagamento.map((forma: { tipo: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; percentual: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; vezes: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; }, index: React.Key | null | undefined) => (
+                      <div key={index} className="bg-white rounded-lg p-4 border-2 border-gray-200">
+                        <div className="flex items-center justify-between mb-2">
+                          <p className="font-semibold text-gray-800">{forma.tipo}</p>
+                          <span className="text-2xl font-bold text-purple-600">{forma.percentual}%</span>
+                        </div>
+                        <p className="text-sm text-gray-600">{forma.vezes} transações</p>
+                        <div className="w-full bg-gray-200 rounded-full h-1.5 mt-2">
+                          <div
+                            className="bg-purple-600 h-1.5 rounded-full"
+                            style={{ width: `${forma.percentual}%` }}
+                          ></div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Períodos de Maior Gasto */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="bg-gray-50 rounded-lg p-5">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                      <Calendar className="w-5 h-5 text-purple-600" />
+                      Meses de Maior Gasto
+                    </h3>
+                    <div className="space-y-2">
+                      {clienteSelecionado.dadosDetalhados.periodoMaisGasto.meses.map((mes: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, index: React.Key | null | undefined) => (
+                        <div key={index} className="bg-white px-4 py-3 rounded-lg border-l-4 border-purple-600">
+                          <p className="font-medium text-gray-800">{mes}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="bg-gray-50 rounded-lg p-5">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                      <TrendingUp className="w-5 h-5 text-purple-600" />
+                      Dias da Semana
+                    </h3>
+                    <div className="space-y-2">
+                      {clienteSelecionado.dadosDetalhados.periodoMaisGasto.dias.map((dia: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, index: React.Key | null | undefined) => (
+                        <div key={index} className="bg-white px-4 py-3 rounded-lg border-l-4 border-purple-600">
+                          <p className="font-medium text-gray-800">{dia}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Horários de Pico */}
+                <div className="bg-gray-50 rounded-lg p-5">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                    <Clock className="w-5 h-5 text-purple-600" />
+                    Horários de Maior Atividade
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {clienteSelecionado.dadosDetalhados.horariosPico.map((horario: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, index: React.Key | null | undefined) => (
+                      <div key={index} className="bg-white px-4 py-3 rounded-lg flex items-center gap-3">
+                        <Clock className="w-5 h-5 text-purple-600" />
+                        <p className="font-medium text-gray-800">{horario}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Histórico de Compras Recentes */}
+                <div className="bg-gray-50 rounded-lg p-5">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                    <PieChart className="w-5 h-5 text-purple-600" />
+                    Últimas Compras
+                  </h3>
+                  <div className="space-y-3">
+                    {clienteSelecionado.dadosDetalhados.historicoCompras.map((compra: { data: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; items: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; valor: { toLocaleString: (arg0: string, arg1: { minimumFractionDigits: number; }) => string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; }; }, index: React.Key | null | undefined) => (
+                      <div key={index} className="bg-white rounded-lg p-4 border-l-4 border-purple-600 hover:shadow-md transition-shadow">
+                        <div className="flex justify-between items-start">
+                          <div className="flex-1">
+                            <p className="text-sm text-gray-500 mb-1">{compra.data}</p>
+                            <p className="font-medium text-gray-800">{compra.items}</p>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-lg font-bold text-green-600">
+                              R$ {compra.valor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Rodapé do Modal */}
+              <div className="bg-gray-100 p-4 rounded-b-lg flex justify-end gap-3">
+                <button
                   onClick={fecharModal}
-                  className="text-white hover:bg-purple-800 rounded-full p-2 transition-colors"
+                  className="px-6 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-lg transition-colors font-medium"
                 >
-                  <X className="w-6 h-6" />
+                  Fechar
+                </button>
+                <button className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors font-medium flex items-center gap-2">
+                  <Edit className="w-4 h-4" />
+                  Editar Cliente
                 </button>
               </div>
             </div>
-
-            {/* Conteúdo do Modal */}
-            <div className="p-6 space-y-6">
-              
-              {/* Informações de Contato */}
-              <div className="bg-gray-50 rounded-lg p-5">
-                <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                  <Phone className="w-5 h-5 text-purple-600" />
-                  Informações de Contato
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {clienteSelecionado.whatsapp && (
-                    <div className="flex items-center gap-3 bg-white p-3 rounded-lg">
-                      <Phone className="w-5 h-5 text-green-600" />
-                      <div>
-                        <p className="text-xs text-gray-500">WhatsApp</p>
-                        <p className="font-medium text-gray-800">{clienteSelecionado.whatsapp}</p>
-                      </div>
-                    </div>
-                  )}
-                  {clienteSelecionado?.email && (
-                    <div className="flex items-center gap-3 bg-white p-3 rounded-lg">
-                      <Mail className="w-5 h-5 text-blue-600" />
-                      <div>
-                        <p className="text-xs text-gray-500">E-mail</p>
-                        <p className="font-medium text-gray-800">{clienteSelecionado.email}</p>
-                      </div>
-                    </div>
-                  )}
-                  <div className="flex items-center gap-3 bg-white p-3 rounded-lg md:col-span-2">
-                    <MapPin className="w-5 h-5 text-red-600" />
-                    <div>
-                      <p className="text-xs text-gray-500">Endereço</p>
-                      <p className="font-medium text-gray-800">{clienteSelecionado.dadosDetalhados.endereco}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Resumo Financeiro */}
-              <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-5 border border-green-200">
-                <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                  <DollarSign className="w-5 h-5 text-green-600" />
-                  Resumo Financeiro
-                </h3>
-                <div className="bg-white rounded-lg p-4">
-                  <p className="text-sm text-gray-600 mb-2">Total Gasto Acumulado</p>
-                  <p className="text-4xl font-bold text-green-600">
-                    R$ {clienteSelecionado.dadosDetalhados.totalGasto.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
-                  </p>
-                </div>
-              </div>
-
-              {/* Preferências de Gasto */}
-              <div className="bg-gray-50 rounded-lg p-5">
-                <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                  <ShoppingBag className="w-5 h-5 text-purple-600" />
-                  Preferências de Gasto
-                </h3>
-                <div className="space-y-3">
-                  {clienteSelecionado.dadosDetalhados.preferenciasGasto.map((pref: { categoria: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; cnae: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; percentual: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; }, index: React.Key | null | undefined) => (
-                    <div key={index} className="bg-white rounded-lg p-4">
-                      <div className="flex justify-between items-center mb-2">
-                        <div>
-                          <p className="font-semibold text-gray-800">{pref.categoria}</p>
-                          <p className="text-xs text-gray-500">CNAE: {pref.cnae}</p>
-                        </div>
-                        <span className="text-lg font-bold text-purple-600">{pref.percentual}%</span>
-                      </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div 
-                          className="bg-purple-600 h-2 rounded-full transition-all"
-                          style={{ width: `${pref.percentual}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Formas de Pagamento */}
-              <div className="bg-gray-50 rounded-lg p-5">
-                <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                  <CreditCard className="w-5 h-5 text-purple-600" />
-                  Formas de Pagamento Mais Usadas
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {clienteSelecionado.dadosDetalhados.formasPagamento.map((forma: { tipo: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; percentual: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; vezes: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; }, index: React.Key | null | undefined) => (
-                    <div key={index} className="bg-white rounded-lg p-4 border-2 border-gray-200">
-                      <div className="flex items-center justify-between mb-2">
-                        <p className="font-semibold text-gray-800">{forma.tipo}</p>
-                        <span className="text-2xl font-bold text-purple-600">{forma.percentual}%</span>
-                      </div>
-                      <p className="text-sm text-gray-600">{forma.vezes} transações</p>
-                      <div className="w-full bg-gray-200 rounded-full h-1.5 mt-2">
-                        <div 
-                          className="bg-purple-600 h-1.5 rounded-full"
-                          style={{ width: `${forma.percentual}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Períodos de Maior Gasto */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-gray-50 rounded-lg p-5">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                    <Calendar className="w-5 h-5 text-purple-600" />
-                    Meses de Maior Gasto
-                  </h3>
-                  <div className="space-y-2">
-                    {clienteSelecionado.dadosDetalhados.periodoMaisGasto.meses.map((mes: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, index: React.Key | null | undefined) => (
-                      <div key={index} className="bg-white px-4 py-3 rounded-lg border-l-4 border-purple-600">
-                        <p className="font-medium text-gray-800">{mes}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="bg-gray-50 rounded-lg p-5">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                    <TrendingUp className="w-5 h-5 text-purple-600" />
-                    Dias da Semana
-                  </h3>
-                  <div className="space-y-2">
-                    {clienteSelecionado.dadosDetalhados.periodoMaisGasto.dias.map((dia: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, index: React.Key | null | undefined) => (
-                      <div key={index} className="bg-white px-4 py-3 rounded-lg border-l-4 border-purple-600">
-                        <p className="font-medium text-gray-800">{dia}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Horários de Pico */}
-              <div className="bg-gray-50 rounded-lg p-5">
-                <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                  <Clock className="w-5 h-5 text-purple-600" />
-                  Horários de Maior Atividade
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {clienteSelecionado.dadosDetalhados.horariosPico.map((horario: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, index: React.Key | null | undefined) => (
-                    <div key={index} className="bg-white px-4 py-3 rounded-lg flex items-center gap-3">
-                      <Clock className="w-5 h-5 text-purple-600" />
-                      <p className="font-medium text-gray-800">{horario}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Histórico de Compras Recentes */}
-              <div className="bg-gray-50 rounded-lg p-5">
-                <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                  <PieChart className="w-5 h-5 text-purple-600" />
-                  Últimas Compras
-                </h3>
-                <div className="space-y-3">
-                  {clienteSelecionado.dadosDetalhados.historicoCompras.map((compra: { data: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; items: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; valor: { toLocaleString: (arg0: string, arg1: { minimumFractionDigits: number; }) => string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; }; }, index: React.Key | null | undefined) => (
-                    <div key={index} className="bg-white rounded-lg p-4 border-l-4 border-purple-600 hover:shadow-md transition-shadow">
-                      <div className="flex justify-between items-start">
-                        <div className="flex-1">
-                          <p className="text-sm text-gray-500 mb-1">{compra.data}</p>
-                          <p className="font-medium text-gray-800">{compra.items}</p>
-                        </div>
-                        <div className="text-right">
-                          <p className="text-lg font-bold text-green-600">
-                            R$ {compra.valor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-            </div>
-
-            {/* Rodapé do Modal */}
-            <div className="bg-gray-100 p-4 rounded-b-lg flex justify-end gap-3">
-              <button
-                onClick={fecharModal}
-                className="px-6 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-lg transition-colors font-medium"
-              >
-                Fechar
-              </button>
-              <button className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors font-medium flex items-center gap-2">
-                <Edit className="w-4 h-4" />
-                Editar Cliente
-              </button>
-            </div>
           </div>
-        </div>
-      )}
-    </>
-  );
-};
+        )}
+      </>
+    );
+  };
 
 
 
@@ -1829,7 +1831,7 @@ const UsuariosPage = () => {
     </>
   );
 
-// Página de Aplicações ( as aplicações que tenho prontas e que posso colocar para me fazer faturar algo )
+  // Página de Aplicações ( as aplicações que tenho prontas e que posso colocar para me fazer faturar algo )
   const AplicacoesPage = () => (
     <>
       <div className="mb-8 flex justify-between items-center">
@@ -1856,7 +1858,7 @@ const UsuariosPage = () => {
           <p className="text-gray-500 text-sm mb-1">Em desenvolvimento</p>
           <p className="text-3xl font-bold text-blue-600">0</p>
         </div>
-         <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="bg-white rounded-lg shadow-md p-6">
           <p className="text-gray-500 text-sm mb-1">Em planejamento</p>
           <p className="text-3xl font-bold text-red-600">0</p>
         </div>
@@ -2238,7 +2240,7 @@ const UsuariosPage = () => {
         return <PropostasPage />;
       case 'negocios':
         return <NegociosPage />;
-      case 'aplicacoes': 
+      case 'aplicacoes':
         return <AplicacoesPage />;
       case 'quotations':
         return <QuotationsPage />;
@@ -2261,7 +2263,7 @@ const UsuariosPage = () => {
       <aside className={`${sidebarOpen ? 'w-64' : 'w-20'} bg-gradient-to-b from-blue-900 to-blue-800 text-white transition-all duration-300 flex flex-col`}>
         <div className="p-4 flex items-center justify-between border-b border-blue-700">
           {sidebarOpen && <h1 className="text-xl font-bold">Souza Tech Dashboard</h1>}
-          <button 
+          <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
             className="p-2 hover:bg-blue-700 rounded-lg transition-colors"
           >
@@ -2275,11 +2277,10 @@ const UsuariosPage = () => {
               <li key={index}>
                 <button
                   onClick={() => setCurrentPage(item.page)}
-                  className={`w-full flex items-center gap-3 p-3 rounded-lg transition-colors ${
-                    currentPage === item.page
-                      ? 'bg-blue-700 text-white' 
+                  className={`w-full flex items-center gap-3 p-3 rounded-lg transition-colors ${currentPage === item.page
+                      ? 'bg-blue-700 text-white'
                       : 'hover:bg-blue-700/50 text-blue-100'
-                  }`}
+                    }`}
                 >
                   <item.icon className="w-5 h-5 flex-shrink-0" />
                   {sidebarOpen && <span className="font-medium">{item.label}</span>}

@@ -399,8 +399,8 @@ export const UsuariosPage = () => {
             <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white p-6 rounded-t-lg sticky top-0 z-10">
               <div className="flex justify-between items-start">
                 <div>
-                  <h2 className="text-2xl font-bold mb-2">{clienteSelecionado?.nome}</h2>
-                  <p className="text-purple-100 text-sm">Cliente de Terceiro - {clienteSelecionado?.empresaVinculada}</p>
+                  <h2 className="text-2xl font-bold mb-2">{clienteSelecionado['nome']}</h2>
+                  <p className="text-purple-100 text-sm">Cliente de Terceiro - {clienteSelecionado['empresaVinculada']}</p>
                 </div>
                 <button 
                   onClick={fecharModal}
@@ -421,21 +421,21 @@ export const UsuariosPage = () => {
                   Informações de Contato
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {clienteSelecionado.whatsapp && (
+                  {clienteSelecionado['whatsapp'] && (
                     <div className="flex items-center gap-3 bg-white p-3 rounded-lg">
                       <Phone className="w-5 h-5 text-green-600" />
                       <div>
                         <p className="text-xs text-gray-500">WhatsApp</p>
-                        <p className="font-medium text-gray-800">{clienteSelecionado.whatsapp}</p>
+                        <p className="font-medium text-gray-800">{clienteSelecionado['whatsapp']}</p>
                       </div>
                     </div>
                   )}
-                  {clienteSelecionado?.email && (
+                  {clienteSelecionado['email'] && (
                     <div className="flex items-center gap-3 bg-white p-3 rounded-lg">
                       <Mail className="w-5 h-5 text-blue-600" />
                       <div>
                         <p className="text-xs text-gray-500">E-mail</p>
-                        <p className="font-medium text-gray-800">{clienteSelecionado.email}</p>
+                        <p className="font-medium text-gray-800">{clienteSelecionado['email']}</p>
                       </div>
                     </div>
                   )}
@@ -443,7 +443,7 @@ export const UsuariosPage = () => {
                     <MapPin className="w-5 h-5 text-red-600" />
                     <div>
                       <p className="text-xs text-gray-500">Endereço</p>
-                      <p className="font-medium text-gray-800">{clienteSelecionado.dadosDetalhados.endereco}</p>
+                      <p className="font-medium text-gray-800">{clienteSelecionado['dadosDetalhados']['endereco']}</p>
                     </div>
                   </div>
                 </div>
