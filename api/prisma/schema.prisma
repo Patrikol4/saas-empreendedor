@@ -20,6 +20,21 @@ enum AplicacaoStatus {
     PLANEJAMENTO
 }
 
+enum ClienteStatus {
+    ATIVO
+    PROSPECTADO
+    INATIVO
+    PERDIDO // NO CASO DE EU PERDER ESTE CLIENTE POR ALGUM MOTIVO
+}
+
+enum NegocioStatus {
+    ATIVO
+    INATIVO
+    ONLINE
+    OFFLINE
+    CONFIGURAÇÃO // EM FASE DE CONFIGURAÇÃO
+}
+
 enum journalType {
     REFLEXAO
     APRENDIZADO
@@ -28,14 +43,44 @@ enum journalType {
     PESSOAL
 }
 
+enum userType {
+    CLIENTE_PLATAFORMA // CLIENTE DO PAINEL DE CONTROLE, PARA SEU USO GERAL , COMO EMPRESA OU EMPREENDEDOR
+    CLIENTE_TERCEIRO // CLIENTE DE TERCEIRO, OU SEJA, CLIENTE CADASTRADO POR CLIENTE_PLATAFORMA PARA SEU CONTROLE GERAL DE ENTRADAS E SAÍDAS DE INFORMAÇÃO
+}
+
+// Planos de usuários
+enum userPlan {
+    PREMIUM
+    BÁSICO
+    ENTERPRISE
+}
+
+enum userStatus {
+    ATIVO
+    INATIVO
+    PENDENTE // AGUARDANDO PAGAMENTO E CONFIRMAÇÃO DE PLANO A SER USADO / NO CASO CLIENTE_PLATAFORMA. Não será usado em caso de CLIENTE_TERCEIRO
+    // CLIENTE_TERCEIRO é OU ativo OU inativo . O status se desenvolve e pode ser mudado pelo próprio CLIENTE_PLATAFORMA nas suas atribuições
+    PERDIDO // este é quando não há mais notícia ou recorrencia do mesmo, portanto neste caso, ṕoderá ser sinalizado como tal
+}
+
+//
+
 model User {
-    id        String    @id @default(auto()) @map("_id") @db.ObjectId
-    email     String    @unique
-    password  String
-    name      String?
-    journals  Journal[]
-    createdAt DateTime  @default(now())
-    userId    String?   @db.ObjectId
+    id          String      @id @default(auto()) @map("_id") @db.ObjectId
+    email       String      @unique
+    password    String
+    name        String?
+    telephone   String?
+    address     String // requerido, pois vai servir para análises e upgrades posteriores * ex: como seu uso no maps 
+    type        userType?
+    journals    Journal[]
+    plano       userPlan? // ver se dá pra criar um model só de planos, para que eu possa configurar isso depois... pensando..
+    status      userStatus?
+    mensalidade Int
+    // linkar aqui num possível model focado em "gastos"
+    gastos      Int?
+    createdAt   DateTime    @default(now())
+    userId      String?     @db.ObjectId
 }
 
 model UserRole {
@@ -44,14 +89,14 @@ model UserRole {
 }
 
 model Journal {
-    id        String   @id @default(auto()) @map("_id") @db.ObjectId
+    id        String       @id @default(auto()) @map("_id") @db.ObjectId
     title     String
     content   String?
     tag       journalType?
-    author    User     @relation(fields: [authorId], references: [id])
-    authorId  String   @db.ObjectId
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    author    User         @relation(fields: [authorId], references: [id])
+    authorId  String       @db.ObjectId
+    createdAt DateTime     @default(now())
+    updatedAt DateTime     @updatedAt
 }
 
 model Propostas {
@@ -66,7 +111,11 @@ model Propostas {
 }
 
 model Negocios {
-    id String @id @default(auto()) @map("_id") @db.ObjectId
+    id             String         @id @default(auto()) @map("_id") @db.ObjectId
+    nomeNegocio    String         @unique
+    clienteNegocio String?
+    valorNegocio   Int
+    statusNegocio  NegocioStatus?
 }
 
 model Aplicacoes {
@@ -80,4 +129,14 @@ model Aplicacoes {
     retornoMensal Int // Colocar os retornos mensais deste projeto 
     status        AplicacaoStatus? // vai retornar o endpoint "health" e
     // se o endpoint code retornar 200 ou um código de sucesso, ele retorna o status Online no campo Status
+}
+
+model Clientes {
+    id               String         @id @default(auto()) @map("_id") @db.ObjectId
+    name             String         @unique
+    email            String         @unique
+    telephone        String         @unique
+    status           ClienteStatus?
+    dataContato      DateTime       @updatedAt
+    dataEncerramento DateTime       @updatedAt // em caso do cliente estar em status "perdido"
 }
