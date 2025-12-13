@@ -1572,7 +1572,7 @@ const App = () => {
                       Meses de Maior Gasto
                     </h3>
                     <div className="space-y-2">
-                      {clienteSelecionado.dadosDetalhados.periodoMaisGasto.meses.map((mes: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, index: React.Key | null | undefined) => (
+                      {clienteSelecionado.dadosDetalhados.periodoMaisGasto.meses.map((mes: any, index: any) => (
                         <div key={index} className="bg-white px-4 py-3 rounded-lg border-l-4 border-purple-600">
                           <p className="font-medium text-gray-800">{mes}</p>
                         </div>
@@ -1586,7 +1586,7 @@ const App = () => {
                       Dias da Semana
                     </h3>
                     <div className="space-y-2">
-                      {clienteSelecionado.dadosDetalhados.periodoMaisGasto.dias.map((dia: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, index: React.Key | null | undefined) => (
+                      {clienteSelecionado.dadosDetalhados.periodoMaisGasto.dias.map((dia: any, index: any) => (
                         <div key={index} className="bg-white px-4 py-3 rounded-lg border-l-4 border-purple-600">
                           <p className="font-medium text-gray-800">{dia}</p>
                         </div>
