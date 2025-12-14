@@ -4,26 +4,29 @@
 	"type": "module",
 	"private": true,
 	"scripts": {
-		"dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+		"dev": "node ts-node --respawn --transpile-only src/index.ts",
 		"build": "tsc",
-		"start": "node dist/index.js",
+		"start": "node ts-node --transplite-only src/index.ts",
 		"prisma:generate": "prisma generate",
-		"prisma:migrate": "prisma migrate dev --name init"
+		"prisma:push": "prisma db push "
 	},
 	"dependencies": {
+		"@fastify/cookie": "^11.0.2",
+		"@fastify/cors": "^11.2.0",
 		"@prisma/client": "^6.17.0",
 		"bcrypt": "^5.1.0",
 		"cors": "^2.8.5",
 		"dotenv": "^17.2.3",
 		"express": "^5.1.0",
+		"fastify": "^5.6.2",
 		"ioredis": "^5.8.1",
 		"jsonwebtoken": "^9.0.2",
-		"mongodb": "^7.0.0"
+		"mongodb": "^7.0.0",
+		"ts-node": "^10.9.2"
 	},
 	"devDependencies": {
-		"prisma": "6.17.0",
 		"@types/node": "24.7.1",
-		"ts-node-dev": "^2.0.0",
+		"prisma": "6.17.0",
 		"typescript": "^5.9.3"
 	}
 }

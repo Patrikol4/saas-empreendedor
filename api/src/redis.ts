@@ -3,5 +3,5 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 
-const redis = new IORedis(process.env.REDIS_URL)
+const redis = new IORedis()
 export default redis
