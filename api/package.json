@@ -4,9 +4,9 @@
 	"type": "module",
 	"private": true,
 	"scripts": {
-		"dev": "node ts-node --respawn --transpile-only src/index.ts",
+		"dev": "node --loader ts-node/esm src/index.ts",
 		"build": "tsc",
-		"start": "node ts-node --transplite-only src/index.ts",
+		"start": "node ts-node src/index.ts",
 		"prisma:generate": "prisma generate",
 		"prisma:push": "prisma db push "
 	},

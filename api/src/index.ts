@@ -2,7 +2,7 @@ import Fastify, { FastifyInstance, RouteShorthandOptions } from 'fastify'
 import { Server, IncomingMessage, ServerResponse } from 'http'
 import cookie, { FastifyCookieOptions } from "@fastify/cookie"
 // import { userRoutes } from './routes/user.route'
-import prismaPlugin from './plugins/prismaPlugin'
+import prismaPlugin from './plugins/prismaPlugin.ts'
 // import nodemailerPlugin from './plugins/nodemailerPlugin'
 // import { redutoRoutes } from './routes/reduto.route'
 // import { walletRoutes } from './routes/wallet.route'
