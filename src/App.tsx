@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } from 'recharts';
 import { Send, Settings, Cpu, Clock, Lock, ChartArea, Users, FileText, Database, CheckCircle, DollarSign, TrendingUp, LayoutDashboard, UserCircle, LogOut, Menu, X, ChevronDown, Search, Plus, Edit, Trash2, Eye, Filter, Download, Upload, Mail, Phone, MapPin, Calendar, Save, User, Building2, ShoppingBag, CreditCard, PieChart } from 'lucide-react';
-//import type { Icon, Title, Value, Color } from './interfaces/Pages';
 
 const App = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -983,7 +982,7 @@ const App = () => {
           <p className="text-gray-600">Gerencie sua base de clientes</p>
         </div>
         <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center gap-2 transition-colors">
-          <Plus className="w-5 h-5" />
+          <Plus className="w-5 h-5"  onClick={() => (console.log("Botão de novo cliente pressionado"))}/>
           Novo Cliente
         </button>
       </div>
@@ -1049,8 +1048,12 @@ const App = () => {
   );
 
   const UsuariosPage = () => {
+    // Modais de dados de um usuário específico
     const [modalAberto, setModalAberto] = useState(false);
     const [clienteSelecionado, setClienteSelecionado] = useState(null);
+    // Modais de um novo usuário
+    const [newUserOpen, setNewUserOpen] = useState(false);
+    
 
     const [usuarios] = useState([
       {
@@ -1247,7 +1250,19 @@ const App = () => {
       }
     ]);
 
-    const abrirModal = (usuario: React.SetStateAction<null> | { id: number; nome: string; email: string; telefone: string; tipo: string; empresaVinculada: null; plano: string; status: string; dataCadastro: string; mensalidade: string; whatsapp?: undefined; dadosDetalhados?: undefined; } | { id: number; nome: string; email: string; telefone: string; whatsapp: string; tipo: string; empresaVinculada: string; plano: string; status: string; dataCadastro: string; mensalidade: string; dadosDetalhados: { endereco: string; preferenciasGasto: { categoria: string; cnae: string; percentual: number; }[]; totalGasto: number; periodoMaisGasto: { meses: string[]; dias: string[]; }; formasPagamento: { tipo: string; percentual: number; vezes: number; }[]; horariosPico: string[]; historicoCompras: { data: string; valor: number; items: string; }[]; }; } | { id: number; nome: string; email: string; telefone: string; tipo: string; empresaVinculada: string; plano: string; status: string; dataCadastro: string; mensalidade: string; dadosDetalhados: { endereco: string; preferenciasGasto: { categoria: string; cnae: string; percentual: number; }[]; totalGasto: number; periodoMaisGasto: { meses: string[]; dias: string[]; }; formasPagamento: { tipo: string; percentual: number; vezes: number; }[]; horariosPico: string[]; historicoCompras: { data: string; valor: number; items: string; }[]; }; whatsapp?: undefined; }) => {
+
+    // Modal de novo usuário 
+    const openNewUserModal = () => {
+      setNewUserOpen(true)
+      console.log('Abrindo modal de novo usuário')
+    }
+
+    const closeNewUserModal = () => {
+      setNewUserOpen(false);
+      console.log('Fechando modal de novo usuário')
+    }
+    // Modal de dados de usuário abertos
+    const abrirModal = (usuario: any) => {
       if (usuario?.tipo === "Cliente de Terceiro" && usuario?.dadosDetalhados) {
         setClienteSelecionado(usuario);
         setModalAberto(true);
@@ -1289,7 +1304,8 @@ const App = () => {
             <h1 className="text-4xl font-bold text-gray-800 mb-2">Usuários</h1>
             <p className="text-gray-600">Gerencie clientes da plataforma e clientes de terceiros</p>
           </div>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center gap-2 transition-colors">
+          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center gap-2 transition-colors"
+             onClick={() => openNewUserModal()}>
             <Plus className="w-5 h-5" />
             Novo Usuário
           </button>
@@ -1436,6 +1452,94 @@ const App = () => {
             </table>
           </div>
         </div>
+        
+
+        {
+          /* Modal para criação de novo cliente */
+        }
+        
+        {newUserOpen && (
+           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-lg shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto">
+              {/* Cabeçalho do Modal */}
+              <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white p-6 rounded-t-lg sticky top-0 z-10">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h2 className="text-2xl font-bold mb-2">Novo Cliente</h2>
+                  
+                    <p className="text-purple-100 text-sm">Faça o registro de seu novo cliente aqui </p>
+                  </div>
+                  <button
+                    onClick={closeNewUserModal}
+                    className="text-white hover:bg-purple-800 rounded-full p-2 transition-colors"
+                  >
+                    <X className="w-6 h-6" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Conteúdo do Modal */}
+              <div className="p-6 space-y-6">
+
+                {/* Informações de Contato */}
+                <div className="bg-gray-50 rounded-lg p-5">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                    <Phone className="w-5 h-5 text-purple-600" />
+                    Informações do novo cliente
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    
+                      <div className="flex items-center gap-3 bg-white p-3 rounded-lg">
+                        <Phone className="w-5 h-5 text-green-600" />
+                        <div>
+                          <p className="text-xs text-gray-500">WhatsApp</p>
+                           <input className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                          />
+                          <p className="font-medium text-gray-800"></p>
+                        </div>
+                      </div>
+                  
+                   
+                      <div className="flex items-center gap-3 bg-white p-3 rounded-lg">
+                        <Mail className="w-5 h-5 text-blue-600" />
+                        <div>
+                          <p className="text-xs text-gray-500">E-mail</p>
+                            <input className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                          />
+                          <p className="font-medium text-gray-800"></p>
+                        </div>
+                      </div>
+                   
+                    <div className="flex items-center gap-3 bg-white p-3 rounded-lg md:col-span-2">
+                      <MapPin className="w-5 h-5 text-red-600" />
+                      <div>
+                        <p className="text-xs text-gray-500">Endereço</p>
+                          <input className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                          />
+                        <p className="font-medium text-gray-800"></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Rodapé do Modal */}
+              <div className="bg-gray-100 p-4 rounded-b-lg flex justify-end gap-3">
+                <button
+                  onClick={closeNewUserModal}
+                  className="px-6 py-2 bg-red-300 hover:bg-red-400 text-black rounded-lg transition-colors font-medium"
+                >
+                  Cancelar
+                </button>
+                <button className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors font-medium flex items-center gap-2">
+                  <Edit className="w-4 h-4" />
+                  Criar Cliente
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Modal de Detalhes do Cliente */}
         {modalAberto && clienteSelecionado && (
@@ -1602,7 +1706,7 @@ const App = () => {
                     Horários de Maior Atividade
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {clienteSelecionado.dadosDetalhados.horariosPico.map((horario: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, index: React.Key | null | undefined) => (
+                    {clienteSelecionado.dadosDetalhados.horariosPico.map((horario: any, index: any) => (
                       <div key={index} className="bg-white px-4 py-3 rounded-lg flex items-center gap-3">
                         <Clock className="w-5 h-5 text-purple-600" />
                         <p className="font-medium text-gray-800">{horario}</p>
@@ -1618,7 +1722,8 @@ const App = () => {
                     Últimas Compras
                   </h3>
                   <div className="space-y-3">
-                    {clienteSelecionado.dadosDetalhados.historicoCompras.map((compra: { data: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; items: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; valor: { toLocaleString: (arg0: string, arg1: { minimumFractionDigits: number; }) => string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; }; }, index: React.Key | null | undefined) => (
+                    {clienteSelecionado.dadosDetalhados.historicoCompras.map(
+                      (compra: { data: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; items: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; valor: { toLocaleString: (arg0: string, arg1: { minimumFractionDigits: number; }) => string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; }; }, index: React.Key | null | undefined) => (
                       <div key={index} className="bg-white rounded-lg p-4 border-l-4 border-purple-600 hover:shadow-md transition-shadow">
                         <div className="flex justify-between items-start">
                           <div className="flex-1">
