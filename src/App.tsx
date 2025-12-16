@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } from 'recharts';
-import { Send, Settings, Cpu, Clock, Lock, ChartArea, Users, FileText, Database, CheckCircle, DollarSign, TrendingUp, LayoutDashboard, UserCircle, LogOut, Menu, X, ChevronDown, Search, Plus, Edit, Trash2, Eye, Filter, Download, Upload, Mail, Phone, MapPin, Calendar, Save, User, Building2, ShoppingBag, CreditCard, PieChart } from 'lucide-react';
+import { Send, Settings, Cpu, Clock, Lock, ChartArea, Users, FileText, Database, CheckCircle, DollarSign, TrendingUp, LayoutDashboard, UserCircle, LogOut, Menu, X, ChevronDown, Search, Plus, Edit, Trash2, Eye, Filter, Download, Upload, Mail, Phone, MapPin, Calendar, Save, User, Building2, ShoppingBag, CreditCard, PieChart, UserStar } from 'lucide-react';
 
 const App = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -59,7 +59,7 @@ const App = () => {
 
   const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'];
 
-  const MetricCard = ({ icon: Icon, title, value, color, prefix = '' }: { icon: any, title: string, value: any, color: any, prefix: any}) => (
+  const MetricCard = ({ icon: Icon, title, value, color, prefix = '' }: { icon: any, title: string, value: any, color: any, prefix: any }) => (
     <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
       <div className="flex items-center justify-between">
         <div>
@@ -119,10 +119,10 @@ const App = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
-        <MetricCard icon={Users} title="Clientes Prospectados" value={metricsData.clientesProspectados} color="text-blue-600" prefix=''/>
-        <MetricCard icon={FileText} title="Propostas Enviadas" value={metricsData.propostasEnviadas} color="text-green-600" prefix=''/>
+        <MetricCard icon={Users} title="Clientes Prospectados" value={metricsData.clientesProspectados} color="text-blue-600" prefix='' />
+        <MetricCard icon={FileText} title="Propostas Enviadas" value={metricsData.propostasEnviadas} color="text-green-600" prefix='' />
         <MetricCard icon={Database} title="Clientes no BD" value={metricsData.clientesSalvos} color="text-purple-600" prefix='' />
-        <MetricCard icon={CheckCircle} title="Negócios Fechados" value={metricsData.negociosFechados} color="text-orange-600" prefix=''/>
+        <MetricCard icon={CheckCircle} title="Negócios Fechados" value={metricsData.negociosFechados} color="text-orange-600" prefix='' />
         <MetricCard icon={DollarSign} title="Receita Total" value={metricsData.receitaTotal} color="text-emerald-600" prefix="R$ " />
       </div>
 
@@ -982,7 +982,7 @@ const App = () => {
           <p className="text-gray-600">Gerencie sua base de clientes</p>
         </div>
         <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center gap-2 transition-colors">
-          <Plus className="w-5 h-5"  onClick={() => (console.log("Botão de novo cliente pressionado"))}/>
+          <Plus className="w-5 h-5" onClick={() => (console.log("Botão de novo cliente pressionado"))} />
           Novo Cliente
         </button>
       </div>
@@ -1053,7 +1053,7 @@ const App = () => {
     const [clienteSelecionado, setClienteSelecionado] = useState(null);
     // Modais de um novo usuário
     const [newUserOpen, setNewUserOpen] = useState(false);
-    
+
 
     const [usuarios] = useState([
       {
@@ -1304,12 +1304,18 @@ const App = () => {
             <h1 className="text-4xl font-bold text-gray-800 mb-2">Usuários</h1>
             <p className="text-gray-600">Gerencie clientes da plataforma e clientes de terceiros</p>
           </div>
+          <div>
           <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center gap-2 transition-colors"
-             onClick={() => openNewUserModal()}>
+            onClick={() => openNewUserModal()}>
             <Plus className="w-5 h-5" />
-            Novo Usuário
+            Criar usuário da plataforma
           </button>
-        </div>
+           <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg flex items-center gap-4 transition-colors"
+            onClick={() => openNewUserModal()}> {/*Mudar aqui também, definir uma const UserThird para separação*/}
+            <Plus className="w-5 h-5" />
+            Criar usuários de terceiros   
+          </button>
+        </div></div>
 
         {/* Cards de Resumo */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
@@ -1452,21 +1458,21 @@ const App = () => {
             </table>
           </div>
         </div>
-        
+
 
         {
           /* Modal para criação de novo cliente */
         }
-        
+
         {newUserOpen && (
-           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
             <div className="bg-white rounded-lg shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto">
               {/* Cabeçalho do Modal */}
               <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white p-6 rounded-t-lg sticky top-0 z-10">
                 <div className="flex justify-between items-start">
                   <div>
                     <h2 className="text-2xl font-bold mb-2">Novo Cliente</h2>
-                  
+
                     <p className="text-purple-100 text-sm">Faça o registro de seu novo cliente aqui </p>
                   </div>
                   <button
@@ -1484,38 +1490,104 @@ const App = () => {
                 {/* Informações de Contato */}
                 <div className="bg-gray-50 rounded-lg p-5">
                   <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                    <Phone className="w-5 h-5 text-purple-600" />
+                    <User className="w-5 h-5 text-purple-600" />
                     Informações do novo cliente
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    
-                      <div className="flex items-center gap-3 bg-white p-3 rounded-lg">
-                        <Phone className="w-5 h-5 text-green-600" />
-                        <div>
-                          <p className="text-xs text-gray-500">WhatsApp</p>
-                           <input className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                          />
-                          <p className="font-medium text-gray-800"></p>
-                        </div>
+
+                    <div className="flex items-center gap-3 bg-white p-3 rounded-lg">
+                      <User className="w-5 h-5 text-green-600" />
+                      <div>
+                        <p className="text-xs text-gray-500">Nome do Cliente</p>
+                        <input className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <p className="font-medium text-gray-800"></p>
                       </div>
-                  
-                   
-                      <div className="flex items-center gap-3 bg-white p-3 rounded-lg">
-                        <Mail className="w-5 h-5 text-blue-600" />
-                        <div>
-                          <p className="text-xs text-gray-500">E-mail</p>
-                            <input className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                          />
-                          <p className="font-medium text-gray-800"></p>
-                        </div>
+                    </div>
+
+
+                    <div className="flex items-center gap-3 bg-white p-3 rounded-lg">
+                      <Phone className="w-5 h-5 text-green-600" />
+                      <div>
+                        <p className="text-xs text-gray-500">WhatsApp</p>
+                        <input className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <p className="font-medium text-gray-800"></p>
                       </div>
-                   
-                    <div className="flex items-center gap-3 bg-white p-3 rounded-lg md:col-span-2">
+                    </div>
+
+                    <div className="flex items-center gap-3 bg-white p-3 rounded-lg">
+                      <Users className="w-5 h-5 text-green-600" />
+                      <div>
+                        <p className="text-xs text-gray-500">Tipo de Cliente</p>
+                        {/* <input className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        /> */}
+
+
+                        <form className="">
+                          {/*Inserir uma validação aqui, onde se a opção Cliente de terceiro for escolhida, bloqueia automaticamente os campos não necessários */}
+                          <select id="countries" className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-nome focus:ring-2 focus:ring-blue-500">
+                            <option selected className="text-xs text">Escolha uma opção</option>
+                            <option value="US">Cliente da plataforma</option>
+                            <option value="CA">Cliente de terceiro</option>
+                           
+                          </select>
+                        </form>
+
+
+                        <p className="font-medium text-gray-800"></p>
+                      </div>
+                    </div>
+
+
+                    <div className="flex items-center gap-3 bg-white p-3 rounded-lg">
+                      <Calendar className="w-5 h-5 text-green-600" />
+                      <div>
+                        <p className="text-xs text-gray-500">Data Contrato</p>
+                        <input className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <p className="font-medium text-gray-800"></p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-3 bg-white p-3 rounded-lg">
+                      <DollarSign className="w-5 h-5 text-green-600" />
+                      <div>
+                        <p className="text-xs text-gray-500">Mensalidade</p>
+                        <input className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <p className="font-medium text-gray-800"></p>
+                      </div>
+                    </div>
+
+
+
+                    <div className="flex items-center gap-3 bg-white p-3 rounded-lg">
+                      <Mail className="w-5 h-5 text-blue-600" />
+                      <div>
+                        <p className="text-xs text-gray-500">E-mail</p>
+                        <input className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <p className="font-medium text-gray-800"></p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-3 bg-white p-3 rounded-lg">
                       <MapPin className="w-5 h-5 text-red-600" />
                       <div>
                         <p className="text-xs text-gray-500">Endereço</p>
-                          <input className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                          />
+                        <input className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <p className="font-medium text-gray-800"></p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-3 bg-white p-3 rounded-lg">
+                      <UserStar className="w-5 h-5 text-red-600" />
+                      <div>
+                        <p className="text-xs text-gray-500">Status</p>
+                        <input className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        /> {/* Aqui vai ser um dropdown para selecionar o status do cliente "Ativo, prospectado, inativo, perdido" */}
                         <p className="font-medium text-gray-800"></p>
                       </div>
                     </div>
@@ -1724,20 +1796,20 @@ const App = () => {
                   <div className="space-y-3">
                     {clienteSelecionado.dadosDetalhados.historicoCompras.map(
                       (compra: { data: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; items: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; valor: { toLocaleString: (arg0: string, arg1: { minimumFractionDigits: number; }) => string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; }; }, index: React.Key | null | undefined) => (
-                      <div key={index} className="bg-white rounded-lg p-4 border-l-4 border-purple-600 hover:shadow-md transition-shadow">
-                        <div className="flex justify-between items-start">
-                          <div className="flex-1">
-                            <p className="text-sm text-gray-500 mb-1">{compra.data}</p>
-                            <p className="font-medium text-gray-800">{compra.items}</p>
-                          </div>
-                          <div className="text-right">
-                            <p className="text-lg font-bold text-green-600">
-                              R$ {compra.valor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
-                            </p>
+                        <div key={index} className="bg-white rounded-lg p-4 border-l-4 border-purple-600 hover:shadow-md transition-shadow">
+                          <div className="flex justify-between items-start">
+                            <div className="flex-1">
+                              <p className="text-sm text-gray-500 mb-1">{compra.data}</p>
+                              <p className="font-medium text-gray-800">{compra.items}</p>
+                            </div>
+                            <div className="text-right">
+                              <p className="text-lg font-bold text-green-600">
+                                R$ {compra.valor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                              </p>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
                   </div>
                 </div>
 
