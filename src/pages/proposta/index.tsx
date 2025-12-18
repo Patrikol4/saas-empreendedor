@@ -1,28 +1,6 @@
 import { Edit, Eye, Filter, Plus, Search, Trash2 } from "lucide-react"
-import { useState } from "react";
-
-const [propostas] = useState([
-    { id: 1, cliente: 'Tech Solutions Ltda', valor: 45000, status: 'Enviada', data: '2024-10-01', validade: '2024-10-31' },
-    { id: 2, cliente: 'Inovação Digital', valor: 32000, status: 'Em Análise', data: '2024-10-03', validade: '2024-11-03' },
-    { id: 3, cliente: 'Empresa ABC', valor: 78000, status: 'Aprovada', data: '2024-09-28', validade: '2024-10-28' },
-    { id: 4, cliente: 'StartUp XYZ', valor: 15000, status: 'Rejeitada', data: '2024-09-15', validade: '2024-10-15' },
-]);
-
-  const getStatusColor = (status: any) => {
-    
-    const colors = Object.keys({
-      'Ativo': 'bg-green-100 text-green-800',
-      'Inativo': 'bg-red-100 text-red-800',
-      'Prospectado': 'bg-blue-100 text-blue-800',
-      'Enviada': 'bg-yellow-100 text-yellow-800',
-      'Em Analise': 'bg-purple-100 text-purple-800',
-      'Aprovada': 'bg-green-100 text-green-800',
-      'Rejeitada': 'bg-red-100 text-red-800',
-      'Fechado': 'bg-green-100 text-green-800',
-      'Em Negociacao': 'bg-orange-100 text-orange-800',
-    });
-    return colors[status] || 'bg-gray-100 text-gray-800';
-  };
+import { getStatusColor } from "../../utils/styles";
+import { propostas } from "../../utils/db";
 
 
 export const PropostasPage = () => (

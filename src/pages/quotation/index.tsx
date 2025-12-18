@@ -1,92 +1,8 @@
 import { DollarSign, TrendingUp, Calendar, Plus, FileText, Clock, Eye, Edit } from "lucide-react";
-import { useState } from "react";
 import { ResponsiveContainer, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar } from "recharts";
+import { aportesDiarios, aportesMensais, cryptoData, noticias } from "../../utils/db";
 
   export const QuotationsPage = () => {
-    const [cryptoData] = useState([
-      {
-        id: 'BTC',
-        name: 'Bitcoin',
-        price: 328450.75,
-        change24h: 2.45,
-        marketCap: '6.4T',
-        volume24h: '89.5B',
-        icon: '₿'
-      },
-      {
-        id: 'ETH',
-        name: 'Ethereum',
-        price: 13250.30,
-        change24h: -1.20,
-        marketCap: '1.6T',
-        volume24h: '45.2B',
-        icon: 'Ξ'
-      },
-      {
-        id: 'BNB',
-        name: 'Binance Coin',
-        price: 1850.90,
-        change24h: 3.75,
-        marketCap: '285B',
-        volume24h: '12.8B',
-        icon: 'B'
-      },
-      {
-        id: 'SOL',
-        name: 'Solana',
-        price: 789.45,
-        change24h: 5.20,
-        marketCap: '342B',
-        volume24h: '8.9B',
-        icon: 'S'
-      }
-    ]);
-
-    const [aportesMensais] = useState([
-      { mes: 'Abr/25', valor: 1500, btc: 0.00457, eth: 0.113 },
-      { mes: 'Mai/25', valor: 2000, btc: 0.00609, eth: 0.151 },
-      { mes: 'Jun/25', valor: 1800, btc: 0.00548, eth: 0.136 },
-      { mes: 'Jul/25', valor: 2500, btc: 0.00761, eth: 0.189 },
-      { mes: 'Ago/25', valor: 2200, btc: 0.00670, eth: 0.166 },
-      { mes: 'Set/25', valor: 1900, btc: 0.00579, eth: 0.143 }
-    ]);
-
-    const [aportesDiarios] = useState([
-      { dia: '01/10', valor: 100, cripto: 'BTC' },
-      { dia: '02/10', valor: 150, cripto: 'ETH' },
-      { dia: '03/10', valor: 100, cripto: 'BTC' },
-      { dia: '04/10', valor: 80, cripto: 'SOL' },
-      { dia: '05/10', valor: 120, cripto: 'BNB' },
-      { dia: '06/10', valor: 100, cripto: 'BTC' },
-      { dia: '07/10', valor: 200, cripto: 'ETH' }
-    ]);
-
-    const [noticias] = useState([
-      {
-        titulo: 'Bitcoin atinge nova máxima histórica',
-        fonte: 'CoinDesk',
-        data: 'Há 2 horas',
-        resumo: 'BTC supera R$ 330 mil pela primeira vez na história brasileira'
-      },
-      {
-        titulo: 'Ethereum prepara grande atualização',
-        fonte: 'CryptoNews',
-        data: 'Há 5 horas',
-        resumo: 'Nova versão promete reduzir taxas em até 70%'
-      },
-      {
-        titulo: 'Regulação avança no Brasil',
-        fonte: 'Portal do Bitcoin',
-        data: 'Há 8 horas',
-        resumo: 'Banco Central anuncia novas diretrizes para exchanges'
-      },
-      {
-        titulo: 'Solana bate recorde de transações',
-        fonte: 'BeInCrypto',
-        data: 'Há 12 horas',
-        resumo: 'Rede processa 65 mil transações por segundo'
-      }
-    ]);
 
     const totalAportado = aportesMensais.reduce((acc, item) => acc + item.valor, 0);
     const mediaAporteMensal = (totalAportado / aportesMensais.length).toFixed(2);
@@ -177,7 +93,7 @@ import { ResponsiveContainer, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Le
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="mes" />
                 <YAxis />
-                <Tooltip formatter={(value) => `R$ ${value.toLocaleString('pt-BR')}`} />
+                <Tooltip formatter={(value: any) => `R$ ${value?.toLocaleString('pt-BR')}`} />
                 <Legend />
                 <Bar dataKey="valor" fill="#3b82f6" name="Valor (R$)" />
               </BarChart>

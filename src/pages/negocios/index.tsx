@@ -1,5 +1,6 @@
 import { Plus, Search, Filter, Eye, Edit } from 'lucide-react';
 import {useState} from 'react'
+import { getStatusColor } from '../../utils/styles';
 
   const [negocios] = useState([
     { id: 1, cliente: 'Tech Solutions Ltda', valor: 45000, status: 'Fechado', dataFechamento: '2024-10-05', vendedor: 'João Silva' },
@@ -8,22 +9,6 @@ import {useState} from 'react'
     { id: 4, cliente: 'Mega Corp', valor: 125000, status: 'Fechado', dataFechamento: '2024-09-20', vendedor: 'Ana Lima' },
   ]);
 
-
-  const getStatusColor = (status: any) => {
-    
-    const colors = Object.keys({
-      'Ativo': 'bg-green-100 text-green-800',
-      'Inativo': 'bg-red-100 text-red-800',
-      'Prospectado': 'bg-blue-100 text-blue-800',
-      'Enviada': 'bg-yellow-100 text-yellow-800',
-      'Em Analise': 'bg-purple-100 text-purple-800',
-      'Aprovada': 'bg-green-100 text-green-800',
-      'Rejeitada': 'bg-red-100 text-red-800',
-      'Fechado': 'bg-green-100 text-green-800',
-      'Em Negociacao': 'bg-orange-100 text-orange-800',
-    });
-    return colors[status] || 'bg-gray-100 text-gray-800';
-  };
 
 export const NegociosPage = () => (
     <>

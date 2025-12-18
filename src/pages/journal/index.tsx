@@ -1,72 +1,11 @@
 import { useState } from 'react';
 //import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } from 'recharts';
 import { Clock, FileText, Plus, Edit, Trash2, Calendar } from 'lucide-react';
+import { entradas } from '../../utils/db';
 //import type { Icon, Title, Value, Color } from './interfaces/Pages';
 
 
 export const JournalPage = () => {
-    const [entradas] = useState([
-        {
-            id: 1,
-            data: '09/10/2025',
-            hora: '08:30',
-            tipo: 'Reflexão',
-            titulo: 'Início de um novo dia produtivo',
-            conteudo: 'Hoje acordei com muita energia e disposição. Vou focar em finalizar o projeto da Tech Solutions e fazer follow-up com os clientes prospectados da semana passada. Meta: 5 ligações e 3 reuniões agendadas.',
-            humor: '😊',
-            tags: ['trabalho', 'metas', 'motivação']
-        },
-        {
-            id: 2,
-            data: '09/10/2025',
-            hora: '14:15',
-            tipo: 'Aprendizado',
-            titulo: 'Nova estratégia de vendas aprendida',
-            conteudo: 'Participei de um webinar sobre técnicas de cold calling. Aprendi sobre a importância de fazer perguntas abertas e ouvir mais do que falar. Vou aplicar isso nas próximas ligações.',
-            humor: '🎯',
-            tags: ['vendas', 'aprendizado', 'desenvolvimento']
-        },
-        {
-            id: 3,
-            data: '08/10/2025',
-            hora: '19:45',
-            tipo: 'Gratidão',
-            titulo: 'Fechamento importante',
-            conteudo: 'Consegui fechar o contrato com a Empresa ABC! Foram 3 semanas de negociação, mas valeu a pena. Grato pela persistência e pela confiança do cliente. Comemoração com a equipe amanhã!',
-            humor: '🎉',
-            tags: ['sucesso', 'gratidão', 'vendas']
-        },
-        {
-            id: 4,
-            data: '07/10/2025',
-            hora: '09:00',
-            tipo: 'Meta',
-            titulo: 'Planejamento semanal',
-            conteudo: 'Semana será intensa. Preciso: 1) Fechar proposta da StartUp XYZ, 2) Preparar apresentação para novo cliente, 3) Revisar pipeline de vendas, 4) Treinar novo membro da equipe.',
-            humor: '💪',
-            tags: ['planejamento', 'metas', 'organização']
-        },
-        {
-            id: 5,
-            data: '06/10/2025',
-            hora: '16:30',
-            tipo: 'Reflexão',
-            titulo: 'Desafio superado',
-            conteudo: 'Cliente estava insatisfeito com o prazo de entrega. Consegui negociar uma solução que funcionou para ambos os lados. Aprendi que comunicação transparente é fundamental.',
-            humor: '😌',
-            tags: ['desafio', 'aprendizado', 'cliente']
-        },
-        {
-            id: 6,
-            data: '05/10/2025',
-            hora: '20:00',
-            tipo: 'Pessoal',
-            titulo: 'Equilíbrio vida-trabalho',
-            conteudo: 'Passei a tarde com a família no parque. É importante desconectar e recarregar as energias. Voltei mais motivado e com ideias novas para a semana.',
-            humor: '🌟',
-            tags: ['familia', 'equilibrio', 'bem-estar']
-        }
-    ]);
 
     const [filtroTipo, setFiltroTipo] = useState('Todos');
     const tipos = ['Todos', 'Reflexão', 'Aprendizado', 'Gratidão', 'Meta', 'Pessoal'];

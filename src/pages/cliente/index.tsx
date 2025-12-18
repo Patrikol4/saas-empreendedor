@@ -1,28 +1,8 @@
-import { useState } from 'react';
+
 import { Download, Edit, Eye, Filter, Plus, Search, Trash2 } from 'lucide-react';
+import { getStatusColor } from '../../utils/styles';
+import { clientes } from '../../utils/db';
 
-const [clientes] = useState([
-    { id: 1, nome: 'Tech Solutions Ltda', email: 'contato@techsolutions.com', telefone: '(11) 98765-4321', status: 'Ativo', dataContato: '2024-10-01' },
-    { id: 2, nome: 'Inovação Digital', email: 'vendas@inovacaodigital.com', telefone: '(21) 97654-3210', status: 'Prospectado', dataContato: '2024-10-03' },
-    { id: 3, nome: 'Empresa ABC', email: 'abc@empresa.com', telefone: '(11) 96543-2109', status: 'Ativo', dataContato: '2024-09-28' },
-    { id: 4, nome: 'StartUp XYZ', email: 'contato@startupxyz.com', telefone: '(48) 95432-1098', status: 'Inativo', dataContato: '2024-09-15' },
-]);
-
-const getStatusColor = (status: any) => {
-
-    const colors = Object.keys({
-        'Ativo': 'bg-green-100 text-green-800',
-        'Inativo': 'bg-red-100 text-red-800',
-        'Prospectado': 'bg-blue-100 text-blue-800',
-        'Enviada': 'bg-yellow-100 text-yellow-800',
-        'Em Analise': 'bg-purple-100 text-purple-800',
-        'Aprovada': 'bg-green-100 text-green-800',
-        'Rejeitada': 'bg-red-100 text-red-800',
-        'Fechado': 'bg-green-100 text-green-800',
-        'Em Negociacao': 'bg-orange-100 text-orange-800',
-    });
-    return colors[status] || 'bg-gray-100 text-gray-800';
-};
 
 
 export const ClientesPage = () => (

@@ -1,23 +1,28 @@
+import { useReducer } from "react"
 //import {type State, type Action} from "../interfaces/Reducer.ts"
-export const initialState = false
+export const initialState = { state: null }
 
-export type UserContextType = {state: any, dispatch: any}
+type ACTIONTYPE =
+    | { type: "USER"; payload: any }
+    | { type: "CLEAR"; payload: any }
+    | { type: "UPDATE"; payload: any }
 
-export const reducer = (state: any, action: any)=> {
-    if(action.type=="USER"){
-        return action.payload
+export type UserContextType = { state: any, dispatch: any }
+
+export function reducer(state: typeof initialState, action: ACTIONTYPE) {
+    switch (action.type) {
+        case "USER":
+            return action.payload;
+        case "CLEAR":
+            return action.payload;
+        case "UPDATE":
+            return {
+                ...state,
+                followers: action.payload.followers,
+                following: action.payload.following
+            };
+        default:
+            return state
     }
-    if(action.type=="CLEAR"){
-        return console.log("Payload empty")
-    }
-    if(action.type=="UPDATE"){
-        return {
-            ...state,
-            followers: action.payload.followers,
-            following: action.payload.following,
-            
-        }
-    }
-  
-    return state
+
 }
